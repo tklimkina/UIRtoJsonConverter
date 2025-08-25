@@ -1,5 +1,5 @@
 #include "..\cvi85\include\userint.h" // заголовочный файл от .lib
-#include <atlconv.h>
+//#include <atlconv.h>
 #include "pch.h"
 #include "wrapper.h"
 //#include <string>
@@ -56,12 +56,12 @@ extern "C"
      }
      __declspec(dllexport) char* __stdcall GetStrPanelAttributeW(int panel, int attribute)
      {
-         setlocale(LC_ALL, "Russian");
+       //  setlocale(LC_ALL, "Russian");
        char label[2048];
         // std::string label;
         GetPanelAttribute(panel, attribute, &label);
         //return label.c_str();
-        std::cout << A2W(label) << std::endl;
+       // std::cout << A2W(label) << std::endl;
         return label;
      }
      __declspec(dllexport) int __stdcall GetCtrlAttributeW(int panel, int control, int attribute, void* value)
