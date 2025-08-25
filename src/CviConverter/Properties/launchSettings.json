@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "CviConverter": {
+      "commandName": "Project",
+      "commandLineArgs": "\"DebugScheme.uir\""
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+FPAttributeValueFile
+
+v booleanValues             0	(0) "False"                      
+                            1	(1) "True"
+
+
+v callbackMode             VAL_MODE_IN_QUEUE	(0) "The LabWindows/CVI handler sees the message, and a call to your callback is placed in the LabWindows/CVI standard UI event queue."                      
+                           VAL_MODE_INTERCEPT	(1) "The callback is executed before LabWindows/CVI sees the message. Use this mode if you need to adjust or swallow messages before the LabWindows/CVI handler sees them."
+
+0 SetCtrlToolTipAttribute 3 4 false s
+0 GetCtrlToolTipAttribute 3 4 false g
+
+1 all "Tool Tip Text" CTRL_TOOLTIP_ATTR_TEXT s sg
+ "Specifies the string you want the control to display in its tooltip."
+
+1 all "Tool Tip Enable" CTRL_TOOLTIP_ATTR_ENABLE i sg booleanValues
+ "Specifies whether the control displays its tooltip. Set the value of the CTRL_TOOLTIP_ATTR_ENABLE attribute"
+ " to TRUE if you want the control to display its tooltip. Set the value of the CTRL_TOOLTIP_ATTR_ENABLE attribute "
+ "to FALSE if you do not want the control to display its tooltip."
+
+0 SetTrayIconAttr 2 3 false s
+0 GetTrayIconAttr 2 3 false g
+
+1 all "Tray Icon" ATTR_TRAY_ICOFILE s s
+ "Specifies the icon that you want to appear in the system tray."
+
+1 all "Tray Tooltip Text" ATTR_TRAY_TOOLTIPTEXT s sg
+ "Specifies the tooltip text that you want to appear when the mouse cursor moves over the system tray icon."
+
+1 all "Tray Tooltip Text Length" ATTR_TRAY_TOOLTIPTEXT_LENGTH i g
+ "Specifies the length of the tooltip text that appears when the mouse cursor moves over the system tray icon."
+
+0 SetTrayIconMenuAttr 2 3 false s
+0 GetTrayIconMenuAttr 2 3 false g
+
+1 all "Popup Default Item" ATTR_POPUP_DEFAULT_ITEM i sg
+ "Specifies the 1–based index of the default item in the popup menu as returned by InsertTrayIconMenuItem,"
+ " or 0 if you do not want a default menu item."
+
+1 all "Visible" ATTR_VISIBLE i sg booleanValues
+ "Specifies whether the popup menu is visible.
+ 0 = Not visible
+ 1 = Visible"
+
+0 SetTrayIconMenuItemAttr 3 4 false s
+0 GetTrayIconMenuItemAttr 3 4 false g
+
+1 all "Dimmed" ATTR_DIMMED i sg booleanValues
+ "Specifies whether the menu item is dimmed.
+ 0 = Not dimmed
+ 1 = Dimmed"
+
+1 all "Checked" ATTR_CHECKED i sg booleanValues
+ "Specifies whether the menu item is checked.
+ 0 = Not checked
+ 1 = Checked"
+
+0 SetMsgCallbackAttribute 3 4 false s
+0 GetMsgCallbackAttribute 3 4 false g
+
+1 all "Callback Mode" ATTR_CALLBACK_MODE i sg callbackMode
+ "Specifies the callback mode for the callback. See the documentation for InstallWinMsgCallback() for more details."
+
+1 all "Enabled" ATTR_ENABLED i sg booleanValues
+ "Specifies whether the callback is enabled.
+ 0 = Disabled
+ 1 = Enabled"
+ 
+1 all "Call Default Window Proc" ATTR_CALL_DEF_WIN_PROC i sg booleanValues
+ "Specifies whether, after calling the user callback, the default message handler of the operating system is also called.
+ 0 = Disabled
+ 1 = Enabled"
+
+1 all "Window Proc Return Value" ATTR_WIN_PROC_RET_VAL i sg
+ "Specifies what to return from the user callback if you do not call the default message handler of the operating system (ATTR_CALL_DEF_WIN_PROC is set to FALSE)."
+ 
+0 HashTableGetAttribute 2 3 false g
+0 HashTableSetAttribute 2 3 false s
+
+1 all "Size" ATTR_HT_SIZE i g
+ "The number of key-value pairs stored in the table.
+ "
+
+1 all "Number of Buckets" ATTR_HT_NUM_BUCKETS i g
+ "The number of hash buckets in the table.
+ Note that because the table uses chaining to resolve collisions, the capacity is not limited to the "
+ "number of buckets.
+ "
+
+1 all "Load" ATTR_HT_LOAD d g
+ "The fraction of buckets in the table that contain at least one key-value pair.
+ "
+
+1 all "Grow Load" ATTR_HT_GROW_LOAD d gs
+ "The load at which the table will double the number of buckets.
+ Growing the table when it becomes crowded helps prevent collisions, which keeps access times near O(1). 
+ You can set the value to VAL_DO_NOT_GROW to disable growing.
+ Valid range: 0.50 to 1.00
+ Default value: 0.80
+ "
+
+1 all "Shrink Load" ATTR_HT_SHRINK_LOAD d gs
+ "The load at which the table will halve the number of buckets.
+ In most cases, shrinking is not worthwhile. It is a slow process because it requires that all "
+  "key-value pairs be rehashed. Also, the memory overhead of extra buckets is minimal because 
+ each hash bucket is implemented as a pointer to a linked list node.
+ You can set the value to VAL_DO_NOT_SHRINK to disable shrinking.
+ Valid range: 0.00 to 0.50
+ Default value: VAL_DO_NOT_SHRINK
+ "
+ 
+1 all "Hash Function" ATTR_HT_HASH_FUNCTION p gs
+ "Used to hash keys.
+ The function consumes a variable-length key and produces a 32-bit hash value.
+ The function must have the following prototype:
+ unsigned long HashTableCallback (const void *keyBytes, size_t numBytes);
+ Default: Lookup3_hashlittle
+ "
+ 
+1 all "Hash Distribution" ATTR_HT_HASH_DISTRIBUTION p g
+ "The number of key-value pairs currently hashed to each bucket of the table.
+ This data can reveal if a particular hash function evenly distributes keys or "
+ "if it exhibits pathological clustering.
+ You must pass an unsigned integer array as large as the number of buckets in the table. You can query "
+ "ATTR_HT_NUM_BUCKETS for this number. 
+ "

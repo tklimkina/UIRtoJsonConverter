@@ -1,0 +1,34 @@
+FPAttributeValueFile
+
+0 SetAsyncTimerAttribute 2 3 false s
+0 GetAsyncTimerAttribute 2 3 false g
+
+1 all "Interval" ASYNC_ATTR_INTERVAL d sg
+ "The interval, in seconds, at which the asynchronous timer control callback function is called. "
+ "Depending on the model of the machine you are working on, the minimum interval value that you can use "
+ "may differ. An interval less than the resolution of the asynchronous timer results in timer events with an "
+ "interval equal to the asynchronous timer resolution. Call GetAsyncTimerResolution to get the asynchronous "
+ "timer resolution for your system. If the timer has already started, setting ASYNC_ATTR_INTERVAL resets the "
+ "timer."
+
+1 all "Count" ASYNC_ATTR_COUNT i sg
+ "When set, specifies the number of timer events to be generated before the timer is automatically discarded. "
+ "A negative value will make the timer generate events until it is discarded by a call to DiscardAsyncTimer or "
+ "suspended by a call to SuspendAsyncTimerCallbacks. A value of zero will return an error. "
+ "When queried, indicates the number of timer events remaining before the timer is automatically discarded."
+
+1 all "Enabled" ASYNC_ATTR_ENABLED i sg
+ "Specifies whether the timer callback for a control is called. Set ASYNC_ATTR_ENABLED to 0 to disable the timer "
+ "and set ASYNC_ATTR_ENABLED to 1 to enable the timer. Setting ASYNC_ATTR_ENABLED to 0 and then back to 1 does "
+ "not disturb the ongoing interval schedule. If one or more callbacks are missed while ASYNC_ATTR_ENABLE is 0, "
+ "they are lost."
+
+1 all "Callback Data" ASYNC_ATTR_CALLBACK_DATA p sg
+ "A four-byte value that is passed to the asynchronous control callback function. The value can be a pointer "
+ "to user data."
+
+1 all "Callback Function" ASYNC_ATTR_CALLBACK_FUNCTION_POINTER p sg
+ "A pointer to the callback function for the asyncronous timer control."
+
+1 all "Thread Priority" ASYNC_ATTR_THREAD_PRIORITY i g
+ "Specifies the thread priority at which the timer runs. This attribute is available only on real-time systems."

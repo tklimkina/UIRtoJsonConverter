@@ -1,0 +1,1 @@
+<customize version="6.0"><control><parameter>Pathname</parameter><function>ReadFromFile</function><module>..\..\bin\cviLibCust.dll</module><handler>SelectAnyFile</handler></control><control><parameter>Pathname</parameter><function>WriteToFile</function><module>..\..\bin\cviLibCust.dll</module><handler>SelectAnyFile</handler></control></customize>

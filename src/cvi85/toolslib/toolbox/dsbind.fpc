@@ -1,0 +1,1 @@
+<customize version="6.0"><control><parameter>URL</parameter><function>DSBindTableCellRange</function><module>..\..\bin\cviLibCust.dll</module><handler>SelectDataSocketURL</handler></control><control><parameter>URL</parameter><function>DSBindCtrl</function><module>..\..\bin\cviLibCust.dll</module><handler>SelectDataSocketURL</handler></control></customize>

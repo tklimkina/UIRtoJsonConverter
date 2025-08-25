@@ -1,0 +1,1 @@
+<customize version="6.0"><control><parameter>Path</parameter><module>..\..\bin\cviLibCust.dll</module><handler>SelectAnyFile</handler></control></customize>
