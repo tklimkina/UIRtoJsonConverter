@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace CviConverter.dto
 {
-    public class Fieldset : BasePanel
+    public class Led : BasePanel
     {
-        public string xtype { get; set; }
+        public string xtype { get; set; } = "fieldset";
         public double x { get; set; }
         public double y { get; set; }
         public string style { get; set; }
-        // vstyle
+        public List<VStyle> vstyle { get; set; } = new List<VStyle>();
         public string cls { get; set; }
+    }
+    public class VStyle
+    {
+        public string backgroung { get; set; }
     }
 }
