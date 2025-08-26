@@ -39,20 +39,18 @@ namespace CviConverter
 
             int nextControl;
             int h, w, bgcolour;
-            //char[] panellabel = new char[2048];
-            //string panellabel;
+            var label = new StringBuilder(200);
             unsafe
             {
                 LibWrapper.GetPanelAttributeW(panel, (int)Consts.ATTR_PANEL_FIRST_CTRL, &nextControl);
                 LibWrapper.GetPanelAttributeW(panel, (int)Consts.ATTR_HEIGHT, &h);
                 LibWrapper.GetPanelAttributeW(panel, (int)Consts.ATTR_WIDTH, &w);
                 LibWrapper.GetPanelAttributeW(panel, (int)Consts.ATTR_BACKCOLOR, &bgcolour);
-                var lptr = LibWrapper.GetStrPanelAttributeW(panel, (int)Consts.ATTR_TITLE);
-                var label = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(lptr);
+                LibWrapper.GetStrPanelAttributeW(panel, (int)Consts.ATTR_TITLE, label);
 
                 PanelDTO.width = w;
                 PanelDTO.height = h;
-                PanelDTO.title = label;
+                PanelDTO.title = label.ToString();
                 PanelDTO.bodystyle = "background-color:#" + bgcolour.ToString("x");
 
                 while (nextControl != 0)
@@ -61,8 +59,7 @@ namespace CviConverter
                     int label_text, label_visible, label_top, label_left;
                     int x, y, zplane_position, ctrl_tab_position;
 
-                    var cnstptr = LibWrapper.GetCtrlStrAttributeW(panel, nextControl, (int)Consts.ATTR_CONSTANT_NAME);
-                    var cname = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(cnstptr);
+                    var cnstptr = LibWrapper.GetCtrlStrAttributeW(panel, nextControl, (int)Consts.ATTR_CONSTANT_NAME, label);
                     LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_CTRL_STYLE, &ctrl_style);
                     LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_DFLT_VALUE, &dflt_value);
                     LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_TEXT, &label_text);

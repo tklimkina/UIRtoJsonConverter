@@ -54,25 +54,18 @@ extern "C"
      {
          return GetPanelAttribute(panel, attribute, value);
      }
-     __declspec(dllexport) char* __stdcall GetStrPanelAttributeW(int panel, int attribute)
+     __declspec(dllexport) int __stdcall GetStrPanelAttributeW(int panel, int attribute, char* buf)
      {
        //  setlocale(LC_ALL, "Russian");
-       char label[2048];
-        // std::string label;
-        GetPanelAttribute(panel, attribute, &label);
-        //return label.c_str();
-       // std::cout << A2W(label) << std::endl;
-        return label;
+         return GetPanelAttribute(panel, attribute, buf);
      }
      __declspec(dllexport) int __stdcall GetCtrlAttributeW(int panel, int control, int attribute, void* value)
      {
          return GetCtrlAttribute(panel, control, attribute, value);
      }
-     __declspec(dllexport) char* __stdcall GetCtrlStrAttributeW(int panel, int control, int attribute)
+     __declspec(dllexport) int __stdcall GetCtrlStrAttributeW(int panel, int control, int attribute, char* buf)
      {
-         char label[2048];
-         GetCtrlAttribute(panel, control, attribute, &label);
-         return label;
+         return GetCtrlAttribute(panel, control, attribute, buf);
      }
 }
 
