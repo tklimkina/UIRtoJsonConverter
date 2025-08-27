@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CviConverter
 {
@@ -187,8 +188,8 @@ namespace CviConverter
                                 style = "z-index: " + zplane_position.ToString()
                             };
 
-                            led.vstyle.Add(new VStyle() { backgroung = on_color.ToString("x") });
-                            led.vstyle.Add(new VStyle() { backgroung = off_color.ToString("x") });
+                            led.vstyle.Add(0, new[] { new VStyle() { backgroung = on_color.ToString("x") } });
+                            led.vstyle.Add(1, new[] { new VStyle() { backgroung = off_color.ToString("x") }});
 
                             if (ctrl_style % 2 == 0)
                                 led.cls = "wasutp_led_state_default";
@@ -276,20 +277,34 @@ namespace CviConverter
         {
             var filename = panelname + ".json";
 
-            string json = JsonConvert.SerializeObject(dto, Formatting.Indented);
+           /* var mainSettings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented
+            };
+            var jObject = JObject.FromObject(dto, JsonSerializer.Create(mainSettings));
+
+            var vstyletockens = jObject.SelectTokens("$..vstyle").ToList();
+
+
+            foreach (var vstyleToken in vstyletockens)
+            {
+                var compactVstyle = JsonConvert.SerializeObject(vstyleToken, Formatting.None);
+                // Заменяем родительское свойство
+                var parentProperty = vstyleToken.Parent as JProperty;
+                if (parentProperty != null)
+                {
+                    parentProperty.Value = JToken.Parse(compactVstyle);
+                }
+            }
+
+
+            string json = jObject.ToString();*/
+
+
+
+           string json = JsonConvert.SerializeObject(dto, Formatting.Indented);
             File.WriteAllText(filename, json);
 
-            /*  var options = new JsonSerializerOptions
-              {
-                  Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
-                  WriteIndented = true
-              };
-
-              using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
-              {
-                  JsonSerializer.Serialize<MainPanel>(fs, dto, options);
-                  Console.WriteLine("Data has been saved to file");
-              }*/
         }
     }
 }
