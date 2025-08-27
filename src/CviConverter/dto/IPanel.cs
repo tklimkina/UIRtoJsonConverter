@@ -8,8 +8,8 @@ namespace CviConverter.dto
 {
     public interface IPanel
     {
-        double width { get; set; }
-        double height { get; set; }
+        int width { get; set; }
+        int height { get; set; }
         string id { get; set; }
     }
 }

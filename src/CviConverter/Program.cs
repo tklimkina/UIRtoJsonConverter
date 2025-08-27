@@ -1,10 +1,9 @@
 ﻿using CviConverter.dto;
-using System.Globalization;
-using System.IO;
-using System.IO.Enumeration;
-using System.Runtime.InteropServices;
+using System;
 using System.Text;
-//using "..\cvi85\include\userint.h"
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
+using Newtonsoft.Json;
 
 namespace CviConverter
 {
@@ -28,12 +27,16 @@ namespace CviConverter
 
             LibWrapper.DisplayPanelW(panel);
 
-            var CVIpanel = CreateDTO(panel, args[0]);
+            string panelname = args[0].Replace(".uir", "");
+
+            var CVIpanel = CreateDTO(panel, panelname);
+
+            SaveJson(CVIpanel, panelname);
 
             Console.WriteLine(args[0]);
         }
 
-        public static MainPanel CreateDTO(int panel, string panelname)
+        static MainPanel CreateDTO(int panel, string panelname)
         {
             var PanelDTO = new MainPanel();
 
@@ -91,7 +94,7 @@ namespace CviConverter
                 PanelDTO.height = h;
                 PanelDTO.title = label.ToString();
                 PanelDTO.bodystyle = "background-color: #" + bgcolour.ToString("x");
-                PanelDTO.id = panelname.Replace(".uir", "");
+                PanelDTO.id = panelname;
 
                 while (nextControl != 0)
                 {
@@ -267,6 +270,26 @@ namespace CviConverter
             }
 
             return PanelDTO;
+        }
+
+        static void SaveJson(MainPanel dto, string panelname)
+        {
+            var filename = panelname + ".json";
+
+            string json = JsonConvert.SerializeObject(dto, Formatting.Indented);
+            File.WriteAllText(filename, json);
+
+            /*  var options = new JsonSerializerOptions
+              {
+                  Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                  WriteIndented = true
+              };
+
+              using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+              {
+                  JsonSerializer.Serialize<MainPanel>(fs, dto, options);
+                  Console.WriteLine("Data has been saved to file");
+              }*/
         }
     }
 }

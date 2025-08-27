@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace CviConverter.dto
 {
     public abstract class BasePanel : IPanel
     {
-        public string xtype { get; set; }
+       // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonProperty(Order = 3)]
+        public int width { get; set; }
 
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public double width { get; set; }
-
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public double height { get; set; }
+       // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonProperty(Order = 4)]
+        public int height { get; set; }
+        [JsonProperty(Order = 1)]
         public string id { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace CviConverter.dto
     public class Label : BasePanel
     {
         public string xtype { get; set; } = "label";
-        public double x { get; set; }
-        public double y { get; set; }
+        public int x { get; set; }
+        public int y { get; set; }
         public string style { get; set; }
         public string id { get; set; }
         public string text { get; set; }
