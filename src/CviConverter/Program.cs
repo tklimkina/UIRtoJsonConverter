@@ -146,6 +146,7 @@ namespace CviConverter
 
                             var lab = new Label()
                             { 
+                                xtype = "label",
                                 x = x,
                                 y = y,
                                 height = h,
@@ -161,6 +162,22 @@ namespace CviConverter
                         case (int)Consts.CTRL_NUMERIC_LS:
                         case (int)Consts.CTRL_STRING:
                         case (int)Consts.CTRL_STRING_LS:
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_PRECISION, &precision);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_BOLD, &label_bold);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_COLOR, &label_color);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_POINT_SIZE, &text_point_size);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_JUSTIFY, &text_justify);
+
+                            var num = new Numeric()
+                            {
+                                xtype = "textfield",
+                                x = x,
+                                y = y,
+                                width = w,
+                                height = h,
+                                style = "z-index: " + zplane_position.ToString(),
+                                decimalPrecision = precision
+                            };
 
                             break;
 
@@ -180,6 +197,7 @@ namespace CviConverter
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_OFF_COLOR, &off_color);
                             var led = new Led()
                             {
+                                xtype = "fieldset",
                                 x = x,
                                 y = y,
                                 width = w,
@@ -188,8 +206,8 @@ namespace CviConverter
                                 style = "z-index: " + zplane_position.ToString()
                             };
 
-                            led.vstyle.Add(0, new[] { new VStyle() { backgroung = on_color.ToString("x") } });
-                            led.vstyle.Add(1, new[] { new VStyle() { backgroung = off_color.ToString("x") }});
+                            led.vstyle.Add(0, new[] { new VStyle() { backgroung = '#' + off_color.ToString("x") } });
+                            led.vstyle.Add(1, new[] { new VStyle() { backgroung = '#' + on_color.ToString("x") }});
 
                             if (ctrl_style % 2 == 0)
                                 led.cls = "wasutp_led_state_default";

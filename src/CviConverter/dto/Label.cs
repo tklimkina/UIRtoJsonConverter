@@ -8,24 +8,15 @@ using System.Threading.Tasks;
 
 namespace CviConverter.dto
 {
-    public class Label : BasePanel
+    public class Label : ElementPanelBase
     {
-        [JsonProperty(Order = -5)]
-        public string xtype { get; set; } = "label";
-
-        [JsonProperty(Order = -4)]
-        public int x { get; set; }
-
-        [JsonProperty(Order = -3)]
-        public int y { get; set; }
-
         [JsonProperty(Order = 5)]
         public string style { get; set; }
 
-        [JsonProperty(Order = 7)]
+        [JsonProperty(Order = 11)]
         public string text { get; set; }
-        [JsonProperty(Order = 6)]
-        public string id { get; set; }
+      /*  [JsonProperty(Order = 6)]
+        public string id { get; set; }*/
     }
     public class LabelStyle
     {

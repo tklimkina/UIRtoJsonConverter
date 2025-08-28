@@ -87,6 +87,7 @@ namespace CviConverter
         ATTR_TEXT_BGCOLOR = 690,
         ATTR_TEXT_JUSTIFY = 700,
         ATTR_DFLT_VALUE = 732,
+        ATTR_PRECISION = 735,
         ATTR_SIZE_TO_TEXT = 861,
         ATTR_ON_COLOR = 920,
         ATTR_OFF_COLOR = 921,

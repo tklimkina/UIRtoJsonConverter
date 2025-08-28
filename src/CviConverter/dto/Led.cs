@@ -7,27 +7,18 @@ using System.Threading.Tasks;
 
 namespace CviConverter.dto
 {
-    public class Led : BasePanel
+    public class Led : ElementPanelBase
     {
-        [JsonProperty(Order = -5)]
-        public string xtype { get; set; } = "fieldset";
-
-        [JsonProperty(Order = -4)]
-        public int x { get; set; }
-
-        [JsonProperty(Order = -3)]
-        public int y { get; set; }
-
-        [JsonProperty(Order = 6)]
-        public string id { get; set; }
+       /* [JsonProperty(Order = 6)]
+        public string id { get; set; }*/
 
         [JsonProperty(Order = 5)]
         public string style { get; set; }
 
-        [JsonProperty(Order = 7)]
+        [JsonProperty(Order = 11)]
         public Dictionary<int, VStyle[]> vstyle { get; set; } = new Dictionary<int, VStyle[]>();
 
-        [JsonProperty(Order = 8)]
+        [JsonProperty(Order = 12)]
         public string cls { get; set; }
     }
     public class VStyle
