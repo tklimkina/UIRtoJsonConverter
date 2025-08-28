@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace CviConverter.dto
 {
-    public interface IPanel
+    public interface IWidget
     {
-        int width { get; set; }
-        int height { get; set; }
+       // public IWidgetOptions options { get; set; }
+    }
+    public interface IWidgetOptions
+    {
     }
 }

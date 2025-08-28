@@ -162,7 +162,7 @@ namespace CviConverter
                         case (int)Consts.CTRL_NUMERIC_LS:
                         case (int)Consts.CTRL_STRING:
                         case (int)Consts.CTRL_STRING_LS:
-                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_PRECISION, &precision);
+                    /*        LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_PRECISION, &precision);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_BOLD, &label_bold);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_COLOR, &label_color);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_POINT_SIZE, &text_point_size);
@@ -178,6 +178,9 @@ namespace CviConverter
                                 style = "z-index: " + zplane_position.ToString(),
                                 decimalPrecision = precision
                             };
+                            if (text_point_size > 2)
+                                num.fieldStyle.fontSize = text_point_size.ToString() + "px";*/
+                           // if
 
                             break;
 
@@ -195,7 +198,7 @@ namespace CviConverter
                             int on_color, off_color;
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_ON_COLOR, &on_color);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_OFF_COLOR, &off_color);
-                            var led = new Led()
+                            var led = new TeleSignal()
                             {
                                 xtype = "fieldset",
                                 x = x,

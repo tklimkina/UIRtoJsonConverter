@@ -10,53 +10,30 @@ namespace CviConverter.dto
 {
     public class Label : ElementPanelBase
     {
-        [JsonProperty(Order = 5)]
-        public string style { get; set; }
-
-        [JsonProperty(Order = 11)]
-        public string text { get; set; }
-      /*  [JsonProperty(Order = 6)]
-        public string id { get; set; }*/
+       
     }
-    public class LabelStyle
+    public class LabelWidget : BaseWidget
     {
-        public int label_bold { get; set; }
-        public int label_color { get; set; }
-        public long bg_color { get; set; }
-        public int zplane_position { get; set; }
-        public int text_justify { get; set; }
-        public int text_point_size { get; set; }
+        public string type { get; set; } = "Labels.SimpleText";
+        public LabelWidgetOptions options { get; set; } = new LabelWidgetOptions(); 
+    }
+    public class LabelWidgetOptions : BaseWidgetOptions
+    {
+        public string text { get; set; }
 
-        public string ToString()
-        {
-            string strlstyle = "padding: 2px 0 2px 4px; ";
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string color { get; set; }
 
-            strlstyle += "z-index: " + zplane_position.ToString();
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int fontSize { get; set; }
 
-            if (text_point_size != 16)
-                strlstyle += "; font-size: " + Convert.ToInt32(5.2).ToString() + "pt";
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int fontWeight { get; set; }
 
-            if (label_bold == 1)
-                strlstyle += "; font-weight: bold";
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string fontStyle { get; set; }
 
-            if (label_color != 0)
-                strlstyle += "; color: #" + label_color.ToString("x");
-
-            if (bg_color != (int)Consts.VAL_TRANSPARENT)
-                strlstyle += "; background-color: #" + bg_color.ToString("x");
-
-            if(text_justify != 0)
-            {
-                strlstyle += ";  text-align:";
-
-                if (text_justify == (int)Consts.VAL_RIGHT_JUSTIFIED)
-                    strlstyle += " right";
-
-                if (text_justify == (int)Consts.VAL_CENTER_JUSTIFIED)
-                    strlstyle += " center";
-            }
-
-            return strlstyle;
-        }
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string textAlign { get; set; }
     }
 }

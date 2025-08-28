@@ -6,23 +6,30 @@ using Newtonsoft.Json;
 
 namespace CviConverter.dto
 {
-    public class MainPanel : BasePanel
+    public class MainPanel
     {
-        [JsonProperty(Order = 2)]
-        public string title { get; set; }
-
-        [JsonProperty(Order = 5)]
+        public string name { get; set; }
+        public string description { get; set; }
+        public Window window { get; set; } = new Window();
         public Layout layout { get; set; } = new Layout();
+    }
 
-        [JsonProperty(Order = 6)]
-        public string bodystyle { get; set; }
-
-        [JsonProperty(Order = 7)]
-        public List<IPanel> items { get; set; } = new List<IPanel>();
+    public class Window : BasePanel
+    {
+        public string backgroundColor { get; set; } = "#EBEBEB";
     }
 
     public class Layout
     {
        public string type { get; set; } = "absolute";
+       public Grid grid { get; set;} = new Grid();
+       public List<IPanel> frames { get; set; } = new List<IPanel>();
+    }
+
+    public class Grid
+    {
+        public int cols { get; set; }
+        public int rows { get; set; }
+        public List<int> margin { get; set; } = new List<int>();
     }
 }

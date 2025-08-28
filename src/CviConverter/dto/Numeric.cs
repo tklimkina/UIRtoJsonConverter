@@ -8,24 +8,8 @@ using System.Threading.Tasks;
 namespace CviConverter.dto
 {
     public class Numeric : ElementPanelBase
-    {
-        [JsonProperty(Order = 5)]
-        public bool readOnly { get; set; } = true;
+    { 
 
-        [JsonProperty(Order = 6)]
-        public string style { get; set; }
-
-        [JsonProperty(Order = 7)]
-        public int decimalPrecision { get; set; }
-
-        [JsonProperty(Order = 11)]
-        public bool hideLabel { get; set; } = true;
-
-        [JsonProperty(Order = 12)]
-        public bool disabled { get; set; } = true;
-
-        [JsonProperty(Order = 13)]
-        public FieldStyle fieldStyle { get; set; } = new FieldStyle();
     }
     public class FieldStyle
     {
