@@ -10,7 +10,8 @@ namespace CviConverter.dto
 {
     public class Label : ElementPanelBase
     {
-       
+        [JsonProperty(Order = 5)]
+        public LabelWidget widget { get; set; } = new LabelWidget();
     }
     public class LabelWidget : BaseWidget
     {

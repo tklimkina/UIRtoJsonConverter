@@ -21,15 +21,15 @@ namespace CviConverter.dto
 
     public class Layout
     {
-       public string type { get; set; } = "absolute";
+      // public string type { get; set; } = "absolute";
        public Grid grid { get; set;} = new Grid();
        public List<IPanel> frames { get; set; } = new List<IPanel>();
     }
 
     public class Grid
     {
-        public int cols { get; set; }
-        public int rows { get; set; }
-        public List<int> margin { get; set; } = new List<int>();
+        public int cols { get; set; } = 1920;
+        public int rows { get; set; } = 1080;
+        public List<int> margin { get; set; } = new List<int>() {0, 0};
     }
 }

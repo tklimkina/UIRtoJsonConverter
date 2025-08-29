@@ -91,11 +91,10 @@ namespace CviConverter
                 LibWrapper.GetPanelAttributeW(panel, (int)Consts.ATTR_BACKCOLOR, &bgcolour);
                 LibWrapper.GetStrPanelAttributeW(panel, (int)Consts.ATTR_TITLE, label);
 
-                PanelDTO.width = w;
-                PanelDTO.height = h;
-                PanelDTO.title = label.ToString();
-                PanelDTO.bodystyle = "background-color: #" + bgcolour.ToString("x");
-                PanelDTO.id = panelname;
+                PanelDTO.window.width = 1920;
+                PanelDTO.window.height = 1080;
+                PanelDTO.name = panelname;
+                PanelDTO.description = label.ToString();
 
                 while (nextControl != 0)
                 {
@@ -128,34 +127,23 @@ namespace CviConverter
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_JUSTIFY, &text_justify);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_SIZE_TO_TEXT, &size_to_text);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_POINT_SIZE, &text_point_size);
-                            if (size_to_text == 1)              // 1 is true. The old library uses int as bool
-                            {
+                          //  if (size_to_text == 1)              // 1 is true. The old library uses int as bool
+                         /*   {
                                 h = 0;
                                 w = 0;
-                            }
-
-                            var ls = new LabelStyle()
-                            {
-                                label_bold = label_bold,
-                                label_color = label_color,
-                                bg_color = bg_color,
-                                zplane_position = zplane_position,
-                                text_justify = text_justify,
-                                text_point_size = text_point_size
-                            };
+                            }*/
 
                             var lab = new Label()
-                            { 
-                                xtype = "label",
+                            {
                                 x = x,
                                 y = y,
                                 height = h,
                                 width = w,
-                                id = constant_name.ToString(),
-                                text = dflt_value.ToString(),
-                                style = ls.ToString()
+                                id = constant_name.ToString()
                             };
-                            PanelDTO.items.Add(lab);
+                            lab.widget.options.text = dflt_value.ToString();
+
+                            PanelDTO.layout.frames.Add(lab);
                             break;
 
                         case (int)Consts.CTRL_NUMERIC:
@@ -200,24 +188,22 @@ namespace CviConverter
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_OFF_COLOR, &off_color);
                             var led = new TeleSignal()
                             {
-                                xtype = "fieldset",
                                 x = x,
                                 y = y,
                                 width = w,
                                 height = h,
-                                id = constant_name.ToString(),
-                                style = "z-index: " + zplane_position.ToString()
+                                id = constant_name.ToString()
                             };
 
-                            led.vstyle.Add(0, new[] { new VStyle() { backgroung = '#' + off_color.ToString("x") } });
-                            led.vstyle.Add(1, new[] { new VStyle() { backgroung = '#' + on_color.ToString("x") }});
+                            led.widget.options.visualType = "image";
 
-                            if (ctrl_style % 2 == 0)
-                                led.cls = "wasutp_led_state_default";
-                            else
-                                led.cls = "wasutp_led_sq_state_default";
-                            PanelDTO.items.Add(led);
-                                break;
+                            // Values
+                            led.widget.options.valueTrue.imageName = GetImageName(on_color.ToString("x"), ctrl_style);
+                            led.widget.options.valueFalse.imageName = GetImageName(off_color.ToString("x"), ctrl_style);
+
+
+                            PanelDTO.layout.frames.Add(led);
+                            break;
 
                         case (int)Consts.CTRL_SQUARE_COMMAND_BUTTON:
                         case (int)Consts.CTRL_OBLONG_COMMAND_BUTTON:
@@ -326,6 +312,28 @@ namespace CviConverter
            string json = JsonConvert.SerializeObject(dto, Formatting.Indented);
             File.WriteAllText(filename, json);
 
+        }
+
+        static string GetImageName(string color, int fnum)
+        {
+            string res = "";
+            
+            if(fnum % 2 == 0)                   // round led
+            {
+                if (color == "33cc33")
+                    res = "lamp_circle_green";
+                else if (color == "ff0000" || color == "ffffff")
+                    res = "lamp_circle_red";
+
+            }
+            else                                // squere led
+            {
+                if (color == "33cc33")
+                    res = "lamp_square_green";
+                else if (color == "ff0000" || color == "ffffff")
+                    res = "lamp_square_red";
+            }
+            return res;
         }
     }
 }

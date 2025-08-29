@@ -9,6 +9,7 @@ namespace CviConverter.dto
 {
     public class TeleSignal : ElementPanelBase
     {
+        [JsonProperty(Order = 5)]
         public TeleSignalWidget widget { get; set; } = new TeleSignalWidget();
     }
     public class TeleSignalWidget : BaseWidget
