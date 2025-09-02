@@ -61,11 +61,11 @@ extern "C"
      }
      __declspec(dllexport) int __stdcall GetCtrlAttributeW(int panel, int control, int attribute, void* value)
      {
-         return GetCtrlAttribute(panel, control, attribute, value);
+         return LibWrapper.GetCtrlAttributeW(panel, control, attribute, value);
      }
      __declspec(dllexport) int __stdcall GetCtrlStrAttributeW(int panel, int control, int attribute, char* buf)
      {
-         return GetCtrlAttribute(panel, control, attribute, buf);
+         return LibWrapper.GetCtrlAttributeW(panel, control, attribute, buf);
      }
 }
 

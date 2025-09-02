@@ -14,9 +14,10 @@ namespace CviConverter.dto
     }
     public class TeleSignalWidget : BaseWidget
     {
-        public string type { get; set; } = "Analogs.Telesignal";
+        [JsonProperty]
+        private string type = "Analogs.Telesignal";
         public TeleSignalWidgetOptions options { get; set; } = new TeleSignalWidgetOptions();
-        public RData rdata { get; set; } = new RData();
+        public RtData rdata { get; set; } = new RtData();
     }
 
     public class TeleSignalWidgetOptions : BaseWidgetOptions
@@ -26,11 +27,11 @@ namespace CviConverter.dto
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int padding { get; set; }
 
-        public Value valueFalse { get; set; } = new Value();
-        public Value valueTrue { get; set; } = new Value();
+        public TeleSignalWidgetOptionsValue valueFalse { get; set; } = new TeleSignalWidgetOptionsValue();
+        public TeleSignalWidgetOptionsValue valueTrue { get; set; } = new TeleSignalWidgetOptionsValue();
     }
 
-    public class Value
+    public class TeleSignalWidgetOptionsValue
     {
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string imageName { get; set; }
@@ -63,11 +64,4 @@ namespace CviConverter.dto
         public string horizontalAlign { get; set; }
     }
 
-    public class RData
-    {
-        public string tag { get; set; }
-        public int tableId { get; set; }
-        public int paramId { get; set; }
-        public string gtopt { get; set; }
-    }
 }

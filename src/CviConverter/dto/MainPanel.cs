@@ -21,7 +21,6 @@ namespace CviConverter.dto
 
     public class Layout
     {
-      // public string type { get; set; } = "absolute";
        public Grid grid { get; set;} = new Grid();
        public List<IPanel> frames { get; set; } = new List<IPanel>();
     }

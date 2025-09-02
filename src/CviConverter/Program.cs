@@ -15,7 +15,17 @@ namespace CviConverter
             if (args.ToList().Count == 0)
                 return;
 
-            char[] filename = args[0].ToCharArray(); 
+            string path = "";
+            foreach (var arg in args)
+            {
+                path += arg;
+                if (!arg.Contains('.'))
+                    path += ' ';
+                else
+                    break;
+            }
+
+            char[] filename = path.ToCharArray(); 
             var panel = LibWrapper.LoadPanelW(0, filename, 1);
 
             if (panel < 0)
@@ -28,13 +38,13 @@ namespace CviConverter
 
             LibWrapper.DisplayPanelW(panel);
 
-            string panelname = args[0].Replace(".uir", "");
+            string panelname = path.Replace(".uir", "");
 
             var CVIpanel = CreateDTO(panel, panelname);
 
             SaveJson(CVIpanel, panelname);
 
-            Console.WriteLine(args[0]);
+            Console.WriteLine("Cхема успешно конвертирована в {0}.json", panelname);
         }
 
         static MainPanel CreateDTO(int panel, string panelname)
@@ -115,7 +125,7 @@ namespace CviConverter
                     // inversion for js coordination system
                     zplane_position = (int)Consts.ZPLANE_MAX_VALUE - 1 - zplane_position;
 
-                    // filally crating all the elements from the scheme
+                    // filally creating all the elements from the scheme
                     switch(ctrl_style)
                     {
                         case (int)Consts.CTRL_TEXT_MSG:
@@ -127,11 +137,6 @@ namespace CviConverter
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_JUSTIFY, &text_justify);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_SIZE_TO_TEXT, &size_to_text);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_POINT_SIZE, &text_point_size);
-                          //  if (size_to_text == 1)              // 1 is true. The old library uses int as bool
-                         /*   {
-                                h = 0;
-                                w = 0;
-                            }*/
 
                             var lab = new Label()
                             {
@@ -150,30 +155,48 @@ namespace CviConverter
                         case (int)Consts.CTRL_NUMERIC_LS:
                         case (int)Consts.CTRL_STRING:
                         case (int)Consts.CTRL_STRING_LS:
-                    /*        LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_PRECISION, &precision);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_PRECISION, &precision);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_BOLD, &label_bold);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_COLOR, &label_color);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_POINT_SIZE, &text_point_size);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_TEXT_JUSTIFY, &text_justify);
 
-                            var num = new Numeric()
+                            var num = new SingleValue()
                             {
-                                xtype = "textfield",
+                                id = constant_name.ToString(),
                                 x = x,
                                 y = y,
                                 width = w,
-                                height = h,
-                                style = "z-index: " + zplane_position.ToString(),
-                                decimalPrecision = precision
+                                height = h
                             };
-                            if (text_point_size > 2)
-                                num.fieldStyle.fontSize = text_point_size.ToString() + "px";*/
-                           // if
 
+                            if (label_visible == 1 && label.ToString().Length != 0)
+                            {
+                                LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_BOLD, &label_bold);
+                                LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_COLOR, &label_color);
+                                LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_BGCOLOR, &bg_color);
+                                //LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_HEIGHT, &h);
+                               // LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_WIDTH, &w);
+                                // LibWrapper.GetCtrlAttributeW(panel, nextControl, ATTR_LABEL_SIZE_TO_TEXT, &attr_size_to_text);
+                                num.widget.options.title.text = label.ToString();
+                                num.widget.options.title.color = '#' + label_color.ToString("X");
+                                num.widget.options.wrapper.backgroundColor = '#' + bg_color.ToString("X");
+                            }
+
+                            PanelDTO.layout.frames.Add(num);
                             break;
 
                         case (int)Consts.CTRL_PICTURE_RING:
                         case (int)Consts.CTRL_PICTURE_RING_LS:
+
+                            var im = new RTImage()
+                            {
+                                id = constant_name.ToString(),
+                                x = x,
+                                y = y,
+                                width = w,
+                                height = h
+                            };
 
                             break;
 
@@ -217,6 +240,15 @@ namespace CviConverter
 
                         case (int)Consts.CTRL_PICTURE:
                         case (int)Consts.CTRL_PICTURE_LS:
+
+                            var logo = new RsduLogo()
+                            {
+                                x = x,
+                                y = y,
+                                width = w,
+                                height = h,
+                                id = constant_name.ToString()
+                            };
 
                             break;
 
@@ -318,22 +350,32 @@ namespace CviConverter
         {
             string res = "";
             
-            if(fnum % 2 == 0)                   // round led
-            {
-                if (color == "33cc33")
-                    res = "lamp_circle_green";
-                else if (color == "ff0000" || color == "ffffff")
-                    res = "lamp_circle_red";
+            if(fnum % 2 == 0)                
+                res = "lamp_circle_";
+            else    
+                res = "lamp_square_";
 
-            }
-            else                                // squere led
-            {
-                if (color == "33cc33")
-                    res = "lamp_square_green";
-                else if (color == "ff0000" || color == "ffffff")
-                    res = "lamp_square_red";
-            }
-            return res;
+            // pick colour
+            int R = Convert.ToInt32("0x" + color.Substring(0, 2), 16);
+            int G = Convert.ToInt32("0x" + color.Substring(2, 2), 16);
+            int B = Convert.ToInt32("0x" + color.Substring(4, 2), 16);
+
+            // red
+            if (R > G + B)
+                res += "red";
+            // white 
+            else if (R > 240 && B > 240 && G > 240)
+                res += "green";
+            // black
+            else if (R < 20 && B < 20 && G < 20)
+                res += "green";
+            // green
+            else if (G > R + B)
+                res += "green";
+
+
+                return res;
+            
         }
     }
 }
