@@ -72,18 +72,18 @@ namespace CviConverter
             int zplane_position;
             int ctrl_tab_position;
 
-            int attr_label_on_x;
-            int attr_label_on_y;
-            int attr_label_on_length;
-           // char attr_label_on_text[2048];
+            int label_on_x;
+            int label_on_y;
+            int label_on_length;
+           // char label_on_text[2048];
             int label_on_color;
             int label_off_x;
             int label_off_y;
             int label_off_length;
-           // char attr_label_off_text[2048];
+           // char label_off_text[2048];
             int label_off_color;
 
-            int attr_frame_color;
+            int frame_color;
 
             int label_x;
             int label_y;
@@ -177,7 +177,7 @@ namespace CviConverter
                                 LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_BGCOLOR, &bg_color);
                                 //LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_HEIGHT, &h);
                                // LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_WIDTH, &w);
-                                // LibWrapper.GetCtrlAttributeW(panel, nextControl, ATTR_LABEL_SIZE_TO_TEXT, &attr_size_to_text);
+                                // LibWrapper.GetCtrlAttributeW(panel, nextControl, ATTR_LABEL_SIZE_TO_TEXT, &size_to_text);
                                 num.widget.options.title.text = label.ToString();
                                 num.widget.options.title.color = '#' + label_color.ToString("X");
                                 num.widget.options.wrapper.backgroundColor = '#' + bg_color.ToString("X");
@@ -300,6 +300,27 @@ namespace CviConverter
 
                         case (int)Consts.CTRL_STRIP_CHART:
                         case (int)Consts.CTRL_STRIP_CHART_LS:
+                            int points_per_screen, num_traces, grid_color;
+                            double yaxis_min, yaxis_max;
+                            int value;
+
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_PLOT_BGCOLOR, &bg_color);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_XLABEL_COLOR, &label_color);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_POINTS_PER_SCREEN, &points_per_screen);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_NUM_TRACES, &num_traces);
+                            LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_GRID_COLOR, &grid_color);
+                            // GetAxisScalingMode(panel, nextControl, VAL_LEFT_YAXIS, NULL, &yaxis_min, &yaxis_max);
+
+                            var chart = new ChartRTDTracking()
+                            {
+                                id = constant_name.ToString(),
+                                x = x,
+                                y = y,
+                                width = w,
+                                height = h
+                            };
+                            chart.widget.options.text = dflt_value.ToString();
+                           // chart.widget.options.
 
                             break;
                     }

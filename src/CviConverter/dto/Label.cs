@@ -15,7 +15,7 @@ namespace CviConverter.dto
     }
     public class LabelWidget : BaseWidget
     {
-        [JsonProperty()]
+        [JsonProperty]
         private string type = "Labels.SimpleText";
         public LabelWidgetOptions options { get; set; } = new LabelWidgetOptions(); 
     }

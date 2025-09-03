@@ -97,7 +97,12 @@ namespace CviConverter
         ATTR_SIZE_TO_TEXT = 861,
         ATTR_ON_COLOR = 920,
         ATTR_OFF_COLOR = 921,
+        ATTR_GRID_COLOR = 1080,
+        ATTR_PLOT_BGCOLOR = 1081,
+        ATTR_NUM_TRACES = 1170,
+        ATTR_POINTS_PER_SCREEN = 1171,
         ATTR_PICT_BGCOLOR = 1291,
+        ATTR_XLABEL_COLOR = 2501,
         ZPLANE_MAX_VALUE = 9999,
 
         // Hex
