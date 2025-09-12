@@ -1,0 +1,6 @@
+{
+  "RsduDatabase": {
+    "Provider": "Oracle",
+    "ConnectionString": "Data Source=host:1521/service_name;User Id=rsduadmin;Password=password;"
+  }
+}

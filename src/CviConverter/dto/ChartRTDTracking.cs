@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CviConverter.dto
+namespace CviConverter.DTO
 {
     public class ChartRTDTracking : ElementPanelBase
     {
@@ -35,6 +35,6 @@ namespace CviConverter.dto
     public class SeriesOptions
     {
         public string lineColor { get; set; }
-        public int lineWidth { get; set; }
+        public int lineWidth { get; set; } = 4;
     }
 }

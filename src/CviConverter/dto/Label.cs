@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace CviConverter.dto
+namespace CviConverter.DTO
 {
     public class Label : ElementPanelBase
     {
@@ -16,7 +16,7 @@ namespace CviConverter.dto
     public class LabelWidget : BaseWidget
     {
         [JsonProperty]
-        private string type = "Labels.SimpleText";
+        private readonly string type = "Labels.SimpleText";
         public LabelWidgetOptions options { get; set; } = new LabelWidgetOptions(); 
     }
     public class LabelWidgetOptions : WidgetTextBase

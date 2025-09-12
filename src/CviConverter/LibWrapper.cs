@@ -23,11 +23,15 @@ namespace CviConverter
         public static unsafe extern int GetPanelAttributeW(int panel, int attribute, void* value);
 
         [DllImport("CviLibsWrapper.dll")]
-        public static unsafe extern int GetStrPanelAttributeW(int panel, int attribute, StringBuilder buf);
+        public static extern int GetStrPanelAttributeW(int panel, int attribute, StringBuilder buf);
 
         [DllImport("CviLibsWrapper.dll")]
         public static unsafe extern int GetCtrlAttributeW(int panel, int control, int attribute, void* value);
+
         [DllImport("CviLibsWrapper.dll")]
         public static unsafe extern int GetCtrlStrAttributeW(int panel, int control, int attribute, StringBuilder buf);
+
+        [DllImport("CviLibsWrapper.dll")]
+        public static unsafe extern int GetTraceAttributeW(int panel, int control, int traceNum, int attribute, void* value);
     }
 }

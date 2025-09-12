@@ -101,6 +101,7 @@ namespace CviConverter
         ATTR_PLOT_BGCOLOR = 1081,
         ATTR_NUM_TRACES = 1170,
         ATTR_POINTS_PER_SCREEN = 1171,
+        ATTR_TRACE_COLOR = 1230,
         ATTR_PICT_BGCOLOR = 1291,
         ATTR_XLABEL_COLOR = 2501,
         ZPLANE_MAX_VALUE = 9999,
@@ -108,7 +109,11 @@ namespace CviConverter
         // Hex
         VAL_TRANSPARENT = 0x1000000,
         VAL_RIGHT_JUSTIFIED = 0x10,
-        VAL_CENTER_JUSTIFIED = 0x20
+        VAL_CENTER_JUSTIFIED = 0x20,
+
+        // L
+        VAL_THIN_LINE = (int)0L,
+        VAL_FAT_LINE = (int)5L
     }
 }
 

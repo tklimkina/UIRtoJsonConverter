@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace CviConverter.dto
+namespace CviConverter.DTO
 {
     public abstract class BasePanel : IPanel
     {

@@ -15,6 +15,7 @@ __declspec(dllexport) int __stdcall DiscardPanel(int panel);
 __declspec(dllexport) int __stdcall QuitUserInterface(int returnCode);
 __declspec(dllexport) int __stdcall InstallPanelCallback(int panel, PanelCallbackPtr eventFunction, void* callbackData);
 __declspec(dllexport) int __stdcall GetPanelAttribute(int panel, int attribute, void* value);
-__declspec(dllexport) int __stdcall LibWrapper.GetCtrlAttributeW(int panel, int control, int attribute, void* value);
+__declspec(dllexport) int __stdcall GetCtrlAttribute(int panel, int control, int attribute, void* value);
+__declspec(dllexport) int __stdcall GetTraceAttribute(int panel, int control, int traceNum, int attribute, void* value);
 
 }

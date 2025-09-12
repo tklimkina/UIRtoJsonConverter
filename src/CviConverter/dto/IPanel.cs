@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CviConverter.dto
+namespace CviConverter.DTO
 {
     public interface IPanel
     {
