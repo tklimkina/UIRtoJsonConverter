@@ -9,15 +9,12 @@ namespace CviConverter.DTO
 {
     public class TeleSignal : ElementPanelBase
     {
-        [JsonProperty(Order = 5)]
-        public TeleSignalWidget widget { get; set; } = new TeleSignalWidget();
+
     }
     public class TeleSignalWidget : BaseWidget
     {
-        [JsonProperty]
-        private string type = "Analogs.Telesignal";
         public TeleSignalWidgetOptions options { get; set; } = new TeleSignalWidgetOptions();
-        public RtData rdata { get; set; } = new RtData();
+        public RtData rtdata { get; set; } = new RtData();
     }
 
     public class TeleSignalWidgetOptions : BaseWidgetOptions

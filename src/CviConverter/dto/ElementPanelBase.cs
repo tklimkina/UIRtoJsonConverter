@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace CviConverter.DTO
 {
-    public class ElementPanelBase : BasePanel
+    public class ElementPanelBase : IPanel
     {
+        public int width { get; set; }
+
+        public int height { get; set; }
+
         [JsonProperty(Order = -10)]
         public string id { get; set; }
 
@@ -19,6 +23,6 @@ namespace CviConverter.DTO
         public int y { get; set; }
 
         [JsonProperty(Order = 5)]
-        public IWidget widget { get; set; }
+        public  IWidget widget { get; set; }
     }
 }

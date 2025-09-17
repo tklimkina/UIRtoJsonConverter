@@ -34,7 +34,7 @@ namespace CviConverter
             string panelname = path.Replace(".uir", "");
 
             var CVIpanel = UirReader.BuildDTO(path, panelname);
-
+            // widget null
             if (CVIpanel == null)
                 return;
 
@@ -50,18 +50,25 @@ namespace CviConverter
             })
             .Build();
 
-            SaveJson(CVIpanel, panelname);
+            //IServiceProvider serviceProvider = host.Services;
+
+             var panelList = DBReader.ReadSettingsFromDB(host.Services, CVIpanel);
+
+            SaveJson(panelList, panelname);
 
             Console.WriteLine("Cхема успешно конвертирована в {0}.json", panelname);
         }
 
         
 
-        static void SaveJson(MainPanel dto, string panelname)
+        static void SaveJson(List<MainPanel> dtos, string panelname)
         {
-            var filename = panelname + ".json";
-           string json = JsonConvert.SerializeObject(dto, Formatting.Indented);
-            File.WriteAllText(filename, json);
+            foreach(var dto in dtos)
+            {
+                var filename = dto.name + ".json";
+                string json = JsonConvert.SerializeObject(dto, Formatting.Indented);
+                File.WriteAllText(filename, json);
+            }
         }
 
 

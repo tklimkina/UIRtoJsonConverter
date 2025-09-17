@@ -9,12 +9,10 @@ namespace CviConverter.DTO
 {
     public class RsduLogo : ElementPanelBase
     {
-        public RsduLogoWidget widget { get; set; } = new RsduLogoWidget();
+
     }
     public class RsduLogoWidget : BaseWidget
     {
-        [JsonProperty]
-        private string type = "Labels.Rsdu5Logo";
         public RsduLogoWidgetOptions options { get; set; } = new RsduLogoWidgetOptions();
     }
     public class RsduLogoWidgetOptions : BaseWidgetOptions

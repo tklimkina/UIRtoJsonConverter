@@ -56,12 +56,10 @@ namespace CviConverter
             int label_on_x;
             int label_on_y;
             int label_on_length;
-            // char label_on_text[2048];
             int label_on_color;
             int label_off_x;
             int label_off_y;
             int label_off_length;
-            // char label_off_text[2048];
             int label_off_color;
 
             int frame_color;
@@ -127,7 +125,12 @@ namespace CviConverter
                                 width = w,
                                 id = constant_name.ToString()
                             };
-                            lab.widget.options.text = dflt_value.ToString();
+
+                            var lwid = new LabelWidget();
+                            lwid.options.text = dflt_value.ToString();
+                            lwid.type = "Labels.SimpleText";
+
+                            lab.widget = lwid;
 
                             PanelDTO.layout.frames.Add(lab);
                             break;
@@ -156,12 +159,15 @@ namespace CviConverter
                                 LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_BOLD, &label_bold);
                                 LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_COLOR, &label_color);
                                 LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_BGCOLOR, &bg_color);
-                                //LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_HEIGHT, &h);
-                                // LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_WIDTH, &w);
-                                // LibWrapper.GetCtrlAttributeW(panel, nextControl, ATTR_LABEL_SIZE_TO_TEXT, &size_to_text);
-                                num.widget.options.title.text = label.ToString();
-                                num.widget.options.title.color = '#' + label_color.ToString("X");
-                                num.widget.options.wrapper.backgroundColor = '#' + bg_color.ToString("X");
+
+                                var nwid = new SingleValueWidget();
+
+                                nwid.options.title.text = label.ToString();
+                                nwid.options.title.color = '#' + label_color.ToString("X");
+                                nwid.options.wrapper.backgroundColor = '#' + bg_color.ToString("X");
+                                nwid.type = "Analogs.SingleValue";
+
+                                num.widget = nwid;
                             }
 
                             PanelDTO.layout.frames.Add(num);
@@ -178,6 +184,8 @@ namespace CviConverter
                                 width = w,
                                 height = h
                             };
+
+                            im.widget = new RTImageWidget() { type = "Analogs.RTImage" };
 
                             break;
 
@@ -199,12 +207,15 @@ namespace CviConverter
                                 id = constant_name.ToString()
                             };
 
-                            led.widget.options.visualType = "image";
+                            var wid = new TeleSignalWidget();
+
+                            wid.options.visualType = "image";
+                            wid.type = "Analogs.Telesignal";
 
                             // Values
-                            led.widget.options.valueTrue.imageName = GetImageName(on_color.ToString("x"), ctrl_style);
-                            led.widget.options.valueFalse.imageName = GetImageName(off_color.ToString("x"), ctrl_style);
-
+                            wid.options.valueTrue.imageName = GetImageName(on_color.ToString("x"), ctrl_style);
+                            wid.options.valueFalse.imageName = GetImageName(off_color.ToString("x"), ctrl_style);
+                            led.widget = wid;
 
                             PanelDTO.layout.frames.Add(led);
                             break;
@@ -230,6 +241,8 @@ namespace CviConverter
                                 height = h,
                                 id = constant_name.ToString()
                             };
+
+                            logo.widget = new RsduLogoWidget() { type = "Labels.Rsdu5Logo" };
 
                             break;
 
@@ -300,7 +313,13 @@ namespace CviConverter
                                 width = w,
                                 height = h
                             };
-                            chart.widget.options.text = dflt_value.ToString();
+
+                            var cwid = new ChartRTDTrackingWidget();
+
+                            cwid.options.text = dflt_value.ToString();
+                            cwid.type = "Charts.ChartRTDTracking";
+
+                            chart.widget = cwid;
 
                             for (int n = 1; n < num_traces; n++)
                             {

@@ -9,12 +9,10 @@ namespace CviConverter.DTO
 {
     public class RTImage : ElementPanelBase
     {
-        public RTImageWidget widget { get; set; } = new RTImageWidget();
+
     }
     public class RTImageWidget : BaseWidget
     {
-        [JsonProperty]
-        private string type = "Analogs.RTImage";
         public RTImageWidgetOptions options { get; set; } = new RTImageWidgetOptions();
         public RtData rtdata { get; set; } = new RtData();
     }

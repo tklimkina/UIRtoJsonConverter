@@ -9,9 +9,9 @@ namespace CviConverter.DTO
 {
     public class BaseWidget : IWidget
     {
-       [JsonProperty]
-       private string type;
-       public IWidgetOptions options { get; set; }
+        // [JsonProperty]
+        public virtual string type { get; set; }
+        public IWidgetOptions options { get; set; }
     }
     public class BaseWidgetOptions : IWidgetOptions
     {

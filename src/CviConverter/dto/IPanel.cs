@@ -8,7 +8,7 @@ namespace CviConverter.DTO
 {
     public interface IPanel
     {
-        int width { get; set; }
-        int height { get; set; }
+        public string id { get; set; }
+        public IWidget widget { get; set; }
     }
 }

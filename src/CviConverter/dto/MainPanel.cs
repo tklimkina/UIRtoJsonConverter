@@ -14,8 +14,10 @@ namespace CviConverter.DTO
         public Layout layout { get; set; } = new Layout();
     }
 
-    public class Window : BasePanel
+    public class Window
     {
+        public int width { get; set; }
+        public int height { get; set; }
         public string backgroundColor { get; set; } = "#EBEBEB";
     }
 

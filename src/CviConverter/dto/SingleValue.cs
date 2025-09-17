@@ -9,12 +9,10 @@ namespace CviConverter.DTO
 {
     public class SingleValue : ElementPanelBase
     {
-        public SingleValueWidget widget { get; set; } = new SingleValueWidget();
+
     }
     public class SingleValueWidget : BaseWidget
     {
-        [JsonProperty]
-        private string type = "Analogs.SingleValue";
         public SingleValueWidgetOptions options { get; set; } = new SingleValueWidgetOptions();
     }
     public class SingleValueWidgetOptions : BaseWidgetOptions

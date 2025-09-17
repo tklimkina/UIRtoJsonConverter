@@ -1,6 +1,6 @@
 {
   "RsduDatabase": {
-    "Provider": "Oracle",
-    "ConnectionString": "Data Source=host:1521/service_name;User Id=rsduadmin;Password=password;"
+    "Provider": "PostgreSQL",
+    "ConnectionString": "Server=192.168.101.161;Port=5432;Database=rsdu;Username=rsduadmin;Password=passme;SearchPath=rsduadmin;"
   }
 }

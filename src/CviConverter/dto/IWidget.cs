@@ -8,7 +8,7 @@ namespace CviConverter.DTO
 {
     public interface IWidget
     {
-       // public IWidgetOptions options { get; set; }
+        public string type { get; set; }
     }
     public interface IWidgetOptions
     {

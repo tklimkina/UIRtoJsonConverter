@@ -9,14 +9,11 @@ namespace CviConverter.DTO
 {
     public class ChartRTDTracking : ElementPanelBase
     {
-        public ChartRTDTrackingWidget widget { get; set; } = new ChartRTDTrackingWidget();
         public List<RtData> rtdata { get; set; } = new List<RtData>();
         public List<RtData> archives { get; set; } = new List<RtData>();
     }
     public class ChartRTDTrackingWidget : BaseWidget
     {
-        [JsonProperty]
-        private string type = "Charts.ChartRTDTracking";
         public ChartRTDTrackingWidgetOptions options { get; set; } = new ChartRTDTrackingWidgetOptions();
     }
     public class ChartRTDTrackingWidgetOptions : BaseWidgetOptions
