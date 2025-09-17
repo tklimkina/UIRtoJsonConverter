@@ -9,7 +9,7 @@ namespace CviConverter.DTO
 {
     public class BaseWidget : IWidget
     {
-        // [JsonProperty]
+        [JsonProperty(Order = -10)]
         public virtual string type { get; set; }
         public IWidgetOptions options { get; set; }
     }

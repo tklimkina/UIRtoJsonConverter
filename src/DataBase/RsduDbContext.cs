@@ -21,13 +21,8 @@ namespace DataBase
         }
         // DbSets
           public DbSet<VpPanel> VpPanels { get;set;}
-          public DbSet<VpGroup> VpGroups { get;set;}
-          public DbSet<VpCtrlFeature> VpCtrlFeatures { get;set;}
-          public DbSet<VpParamsFeature> VpParamsFeatures { get;set;}
           public DbSet<VpCtrl> VpCtrls { get;set;}
-          public DbSet<VpTctrl> VpTctrls { get;set;}
           public DbSet<VpParam> VpParams { get;set;}
-          public DbSet<VpSql> VpSqls { get;set;}
           public DbSet<SysGtopt> SysGtopts { get; set; }
 
 // Standard funcs
