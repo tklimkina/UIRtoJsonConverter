@@ -2,7 +2,7 @@
   "profiles": {
     "CviConverter": {
       "commandName": "Project",
-      "commandLineArgs": "\"DebugScheme.uir\""
+      "commandLineArgs": "\"ИЭСК_Автотрансформаторы_v3.uir\""
     },
     "Container (Dockerfile)": {
       "commandName": "Docker"

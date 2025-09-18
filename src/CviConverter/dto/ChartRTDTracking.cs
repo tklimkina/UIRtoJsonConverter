@@ -27,7 +27,7 @@ namespace CviConverter.DTO
         public int maxDifference { get; set; }
         public string render { get; set; }
         public int RTDRenderDelay { get; set; }
-        public int RTDLimit { get; set; }
+        public int RTDLimit { get; set; } = 15;
         public SeriesOptions seriesOptions { get; set; } = new SeriesOptions();
     }
     public class SeriesOptions

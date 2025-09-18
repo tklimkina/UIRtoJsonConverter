@@ -65,6 +65,7 @@ namespace CviConverter
                                              .Where(v => v.CtrlId == ctrl.Id)
                                              .AsNoTracking()
                                              .ToList();
+                        dto.layout.frames[i] = FillRtDataCh(dto.layout.frames[i], prms, dbContext);
                         break;
                 }
 
@@ -158,9 +159,30 @@ namespace CviConverter
             widget.options.rtdata.gtopt = gtopt.DefineAlias;
             return widget;
         }
-        internal static ChartRTDTrackingWidget FillRtDataCh (ChartRTDTrackingWidget widget, List<VpParam> prms, RsduDbContext dbContext)
+        internal static ChartRTDTracking FillRtDataCh (dynamic chart, List<VpParam> prms, RsduDbContext dbContext)
         {
+            foreach ( var p in prms)
+            {
+                var gtopt = dbContext.SysGtopts
+                                     .Where(g => g.Id == p.GtopId)
+                                     .AsNoTracking()
+                                     .FirstOrDefault();
 
+                chart.rtdata.Add(new RtData() {
+                    tag = "p",
+                    tableId = p.TableId,
+                    paramId = p.ParamId,
+                    gtopt = gtopt.DefineAlias
+                });
+                chart.archives.Add(new RtData()
+                {
+                    tag = "p",
+                    tableId = p.TableId,
+                    paramId = p.ParamId,
+                    gtopt = "GLT_ANALOG_OPT_MEAN1"
+                });
+            }
+            return chart;
         }
 
     }
