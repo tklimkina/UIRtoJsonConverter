@@ -40,17 +40,14 @@ namespace CviConverter
 
             /// build bd
             var opts = GetOptions();
-            //var builder = WebApplication.CreateBuilder(args);
+
             var host = Host.CreateDefaultBuilder(args)
             .ConfigureServices(services =>
             {
                 // Register services
                 services.AddDBEFCore(opts);
-             //   services.AddScoped<RsduDbContext>();
             })
             .Build();
-
-            //IServiceProvider serviceProvider = host.Services;
 
              var panelList = DBReader.ReadSettingsFromDB(host.Services, CVIpanel);
 

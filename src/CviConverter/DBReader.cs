@@ -19,14 +19,14 @@ namespace CviConverter
             using var scope = services.CreateScope();
             using var dbContext = scope.ServiceProvider.GetRequiredService<RsduDbContext>();
 
-            /*var panel = dbContext.VpPanels
+            var panel = dbContext.VpPanels
                                  .Where(v => v.UirName.Contains(dto.name))
                                  .AsNoTracking()
-                                 .FirstOrDefault();*/
-            var panel = dbContext.VpPanels ////////////////////////////////////////// for debug
+                                 .FirstOrDefault();
+            /*var panel = dbContext.VpPanels ////////////////////////////////////////// for debug
                                  .Where(v => v.UirName.Contains("Ключ ТУ"))
                                  .AsNoTracking()
-                                 .FirstOrDefault();
+                                 .FirstOrDefault();*/
 
             ////////////////////// Make a log record if null////////////
 
@@ -39,11 +39,11 @@ namespace CviConverter
 
             for(int i = 0; i < dto.layout.frames.Count; i++)
             {
-                    var ctrls = dbContext.VpCtrls
+                    ctrl = dbContext.VpCtrls
                                  .Where(v => v.PanelId == panel.Id)
                                  .Where(v => v.ConstName == dto.layout.frames[i].id)
                                  .AsNoTracking()
-                                 .ToList();
+                                 .FirstOrDefault();
 
                 switch (dto.layout.frames[i].widget.type)
                 {
@@ -51,7 +51,7 @@ namespace CviConverter
                     case "Analogs.SingleValue":
                     case "Analogs.Telesignal":
                         var param = dbContext.VpParams
-                                             .Where(v => v.CtrlId == ctrls[0].Id)
+                                             .Where(v => v.CtrlId == ctrl.Id)
                                              .AsNoTracking()
                                              .FirstOrDefault();
                         var gtopt = dbContext.SysGtopts
@@ -59,6 +59,12 @@ namespace CviConverter
                                              .AsNoTracking()
                                              .FirstOrDefault();
                         dto.layout.frames[i].widget = FillRtData(dto.layout.frames[i].widget, param, gtopt);
+                        break;
+                    case "Charts.ChartRTDTracking":
+                        var prms = dbContext.VpParams
+                                             .Where(v => v.CtrlId == ctrl.Id)
+                                             .AsNoTracking()
+                                             .ToList();
                         break;
                 }
 
@@ -69,19 +75,57 @@ namespace CviConverter
                 return DistributeToTabs(dbContext, dto);
 
             // No tabs
-
             return new List<MainPanel>() { dto };
         }
 
-       /* private static IWidget FillRtData(IWidget widget, VpParam? param, SysGtopt? gtopt)
-        {
-            var typ = typeof(Widget.GetType());
-            return FillRtData( ()widget,  param, gtopt);
-        }*/
-
         internal static List<MainPanel> DistributeToTabs(RsduDbContext dbContext, MainPanel dto)
         {
-            return new List<MainPanel>();
+            var res = new List<MainPanel>();
+            var tabs = new Dictionary<string?, List<IPanel>>();
+            var panel = dbContext.VpPanels
+                                 .Where(v => v.UirName.Contains(dto.name))
+                                 .AsNoTracking()
+                                 .FirstOrDefault();
+            int pId = panel.Id;
+
+            // Distributing frames
+            foreach (var f in dto.layout.frames)
+            {
+                var tabpage = dbContext.VpCtrls
+                                       .Where(v => v.PanelId == pId)
+                                       .Where(v => v.ConstName == f.id)
+                                       .AsNoTracking()
+                                       .FirstOrDefault();
+                ////////////log null///////////////
+                if(!tabs.Keys.Contains(tabpage?.TabPageName))
+                {
+                    tabs.Add(tabpage?.TabPageName, new List<IPanel>() { f });
+                }
+                else
+                {
+                    tabs[tabpage?.TabPageName].Add(f);
+                }
+            }
+
+            foreach(var k in tabs.Keys)
+            {
+                // Making tabs
+                var tabpanel = new MainPanel()
+                {
+                    name = dto.name + '_' + k,
+                    description = dto.description + '_' + k,
+                    window = dto.window
+                };
+
+                //Adding frames
+                foreach (var v in tabs[k])
+                {
+                    tabpanel.layout.frames.Add(v);
+                }
+                res.Add(tabpanel);
+            }
+
+            return res;
         }
         internal static IWidget FillRtData(dynamic widget, VpParam param, SysGtopt gtopt)
         {
@@ -113,6 +157,10 @@ namespace CviConverter
             widget.options.rtdata.tableId = param.TableId;
             widget.options.rtdata.gtopt = gtopt.DefineAlias;
             return widget;
+        }
+        internal static ChartRTDTrackingWidget FillRtDataCh (ChartRTDTrackingWidget widget, List<VpParam> prms, RsduDbContext dbContext)
+        {
+
         }
 
     }

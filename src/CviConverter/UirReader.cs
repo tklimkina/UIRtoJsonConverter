@@ -324,10 +324,7 @@ namespace CviConverter
                             for (int n = 1; n < num_traces; n++)
                             {
                                 LibWrapper.GetTraceAttributeW(panel, nextControl, n, (int)Consts.ATTR_TRACE_COLOR, &value);
-                                // if( value == (int)Consts.VAL_THIN_LINE)
                             }
-
-                            // chart.widget.options.
 
                             break;
                     }
