@@ -4,11 +4,7 @@ using DataBase.Entities;
 using Ema.Rsdu.Database.EFCore.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace CviConverter
 {
@@ -23,21 +19,25 @@ namespace CviConverter
                                  .Where(v => v.UirName.Contains(dto.name))
                                  .AsNoTracking()
                                  .FirstOrDefault();
-            /*var panel = dbContext.VpPanels ////////////////////////////////////////// for debug
-                                 .Where(v => v.UirName.Contains("Ключ ТУ"))
-                                 .AsNoTracking()
-                                 .FirstOrDefault();*/
 
-            ////////////////////// Make a log record if null////////////
+            if(panel == null)
+            {
+                Log.Error("Отсутствует описание схемы '{0}' в таблице 'VP_PANEL'", dto.name);
+                return new List<MainPanel> (){ dto };
+            }
 
             var ctrl = dbContext.VpCtrls
                                  .Where(v => v.PanelId == panel.Id)
                                  .AsNoTracking()
                                  .FirstOrDefault();
 
-            ////////////////////// Make a log record if null////////////
+            if (ctrl == null)
+            {
+                Log.Error("Отсутствует описание схемы '{0}' в таблице 'VP_CTRL'. Id схемы: {1}", dto.name, panel.Id);
+                return new List<MainPanel>() { dto };
+            }
 
-            for(int i = 0; i < dto.layout.frames.Count; i++)
+            for (int i = 0; i < dto.layout.frames.Count; i++)
             {
                     ctrl = dbContext.VpCtrls
                                  .Where(v => v.PanelId == panel.Id)
@@ -54,6 +54,11 @@ namespace CviConverter
                                              .Where(v => v.CtrlId == ctrl.Id)
                                              .AsNoTracking()
                                              .FirstOrDefault();
+                        if (param == null)
+                        {
+                            Log.Error("Отсутствует описание параметра для контрольного элемента '{0}'", ctrl.Id);
+                            continue;
+                        }
                         var gtopt = dbContext.SysGtopts
                                              .Where( s => s.Id == param.GtopId)
                                              .AsNoTracking()
@@ -65,6 +70,13 @@ namespace CviConverter
                                              .Where(v => v.CtrlId == ctrl.Id)
                                              .AsNoTracking()
                                              .ToList();
+
+                        if (prms.Count == 0)
+                        {
+                            Log.Error("Отсутствует описание параметраов для контрольного элемента '{0}'", ctrl.Id);
+                            continue;
+                        }
+
                         dto.layout.frames[i] = FillRtDataCh(dto.layout.frames[i], prms, dbContext);
                         break;
                 }
@@ -73,22 +85,16 @@ namespace CviConverter
 
             //Several Tabs
             if (ctrl.TabPageName != null)
-                return DistributeToTabs(dbContext, dto);
+                return DistributeToTabs(dbContext, dto, panel.Id);
 
             // No tabs
             return new List<MainPanel>() { dto };
         }
 
-        internal static List<MainPanel> DistributeToTabs(RsduDbContext dbContext, MainPanel dto)
+        internal static List<MainPanel> DistributeToTabs(RsduDbContext dbContext, MainPanel dto, int pId)
         {
             var res = new List<MainPanel>();
             var tabs = new Dictionary<string?, List<IPanel>>();
-            var panel = dbContext.VpPanels
-                                 .Where(v => v.UirName.Contains(dto.name))
-                                 .AsNoTracking()
-                                 .FirstOrDefault();
-            int pId = panel.Id;
-
             // Distributing frames
             foreach (var f in dto.layout.frames)
             {
@@ -97,7 +103,12 @@ namespace CviConverter
                                        .Where(v => v.ConstName == f.id)
                                        .AsNoTracking()
                                        .FirstOrDefault();
-                ////////////log null///////////////
+                
+                if(tabpage == null)
+                {
+                    Log.Error("Отсутствует описаниев таблице 'VP_CTRL' для элемента {0}", f.id);
+                }
+
                 if(!tabs.Keys.Contains(tabpage?.TabPageName))
                 {
                     tabs.Add(tabpage?.TabPageName, new List<IPanel>() { f });
@@ -142,21 +153,21 @@ namespace CviConverter
         {
             widget.rtdata.paramId = param.ParamId;
             widget.rtdata.tableId = param.TableId;
-            widget.rtdata.gtopt = gtopt.DefineAlias;
+            widget.rtdata.gtopt = gtopt?.DefineAlias;
             return widget;
         }
         internal static TeleSignalWidget FillRtDataSig(dynamic widget, VpParam param, SysGtopt gtopt)
         {
             widget.rtdata.paramId = param.ParamId;
             widget.rtdata.tableId = param.TableId;
-            widget.rtdata.gtopt = gtopt.DefineAlias;
+            widget.rtdata.gtopt = gtopt?.DefineAlias;
             return widget;
         }
         internal static SingleValueWidget FillRtDataVal(dynamic widget, VpParam param, SysGtopt gtopt)
         {
             widget.options.rtdata.paramId = param.ParamId;
             widget.options.rtdata.tableId = param.TableId;
-            widget.options.rtdata.gtopt = gtopt.DefineAlias;
+            widget.options.rtdata.gtopt = gtopt?.DefineAlias;
             return widget;
         }
         internal static ChartRTDTracking FillRtDataCh (dynamic chart, List<VpParam> prms, RsduDbContext dbContext)
@@ -172,7 +183,7 @@ namespace CviConverter
                     tag = "p",
                     tableId = p.TableId,
                     paramId = p.ParamId,
-                    gtopt = gtopt.DefineAlias
+                    gtopt = gtopt?.DefineAlias
                 });
                 chart.archives.Add(new RtData()
                 {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using CviConverter.DTO;
+using Serilog;
 
 namespace CviConverter
 {
@@ -104,7 +101,7 @@ namespace CviConverter
                     // inversion for js coordination system
                     zplane_position = (int)Consts.ZPLANE_MAX_VALUE - 1 - zplane_position;
 
-                    // filally creating all the elements from the scheme
+                    // finally creating all the elements from the scheme
                     switch (ctrl_style)
                     {
                         case (int)Consts.CTRL_TEXT_MSG:
@@ -303,7 +300,6 @@ namespace CviConverter
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_POINTS_PER_SCREEN, &points_per_screen);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_NUM_TRACES, &num_traces);
                             LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_GRID_COLOR, &grid_color);
-                            // GetAxisScalingMode(panel, nextControl, VAL_LEFT_YAXIS, NULL, &yaxis_min, &yaxis_max);
 
                             var chart = new ChartRTDTracking()
                             {
@@ -326,6 +322,10 @@ namespace CviConverter
                                 LibWrapper.GetTraceAttributeW(panel, nextControl, n, (int)Consts.ATTR_TRACE_COLOR, &value);
                             }
 
+                            break;
+
+                        default:
+                            Log.Error("Не удалось обработать элемент. Панель: {0}. Константа типа: {1}", panelname, ctrl_style);
                             break;
                     }
 

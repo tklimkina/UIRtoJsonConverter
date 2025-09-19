@@ -1,20 +1,17 @@
 ﻿using CviConverter.DTO;
-using System;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 using DataBase;
+using Serilog;
+
 
 
 namespace CviConverter
 {
     class Program
     {
+        static IHost _host;
         static void Main(string[] args)
         {
             if (args.ToList().Count == 0)
@@ -33,30 +30,39 @@ namespace CviConverter
 
             string panelname = path.Replace(".uir", "");
 
+            ConfigureServices();
+
             var CVIpanel = UirReader.BuildDTO(path, panelname);
             // widget null
             if (CVIpanel == null)
                 return;
 
-            /// build bd
-            var opts = GetOptions();
-
-            var host = Host.CreateDefaultBuilder(args)
-            .ConfigureServices(services =>
-            {
-                // Register services
-                services.AddDBEFCore(opts);
-            })
-            .Build();
-
-             var panelList = DBReader.ReadSettingsFromDB(host.Services, CVIpanel);
+            
+             var panelList = DBReader.ReadSettingsFromDB(_host.Services, CVIpanel);
 
             SaveJson(panelList, panelname);
 
             Console.WriteLine("Cхема успешно конвертирована в {0}.json", panelname);
         }
 
-        
+        static void ConfigureServices()
+        {
+            /// build bd
+            var opts = GetOptions();
+
+            _host = Host.CreateDefaultBuilder()
+            .ConfigureServices(services =>
+            {
+                // Register services
+                services.AddDBEFCore(opts);
+                services.AddSerilog((context, configuration) => configuration
+                                                                     .WriteTo.File("logs/CviConverterLog.txt")
+                                                                     .MinimumLevel.Error()
+                                                                     );
+            })
+            .Build();
+
+        }
 
         static void SaveJson(List<MainPanel> dtos, string panelname)
         {
