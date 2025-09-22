@@ -64,6 +64,8 @@ namespace CviConverter
         CTRL_PICTURE = 480,
         CTRL_PICTURE_LS = 481,
         ATTR_CONSTANT_NAME = 501,
+        CTRL_TABLE = 510,
+        CTRL_TABLE_LS = 511,
         CTRL_HORIZONTAL_SPLITTER_LS = 522,
         CTRL_VERTICAL_SPLITTER_LS = 523,
         ATTR_LEFT = 531,

@@ -324,6 +324,25 @@ namespace CviConverter
 
                             break;
 
+                        case (int)Consts.CTRL_TABLE:
+                        case (int)Consts.CTRL_TABLE_LS:
+                            var table = new Table()
+                            {
+                                x = x,
+                                y = y,
+                                width = w,
+                                height = h,
+                                id = constant_name.ToString()
+                            };
+
+                            table.widget = new TableWidget() 
+                            { 
+                                type = "Analogs.TableGtp",
+                                options = new TableWidgetOptions()
+                            };
+
+                            break;
+
                         default:
                             Log.Error("Не удалось обработать элемент. Панель: {0}. Константа типа: {1}", panelname, ctrl_style);
                             break;

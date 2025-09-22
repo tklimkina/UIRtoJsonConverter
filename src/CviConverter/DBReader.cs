@@ -79,6 +79,21 @@ namespace CviConverter
 
                         dto.layout.frames[i] = FillRtDataCh(dto.layout.frames[i], prms, dbContext);
                         break;
+
+                    case "Analogs.TableGtp":
+                        var prmst = dbContext.VpParams
+                                             .Where(v => v.CtrlId == ctrl.Id)
+                                             .AsNoTracking()
+                                             .ToList();
+
+                        if (prmst.Count == 0)
+                        {
+                            Log.Error("Отсутствует описание параметраов для контрольного элемента '{0}'", ctrl.Id);
+                            continue;
+                        }
+
+                        dto.layout.frames[i].widget = FillRtDataT(dto.layout.frames[i].widget, prmst, dbContext);
+                        break;
                 }
 
             }
@@ -194,6 +209,25 @@ namespace CviConverter
                 });
             }
             return chart;
+        }
+        internal static TableWidget FillRtDataT (dynamic tab, List<VpParam> prms, RsduDbContext dbContext)
+        {
+            foreach (var p in prms)
+            {
+                var gtopt = dbContext.SysGtopts
+                                     .Where(g => g.Id == p.GtopId)
+                                     .AsNoTracking()
+                                     .FirstOrDefault();
+
+                tab.rtdata.Add(new RtData()
+                {
+                    //tag = "p",
+                    tableId = p.TableId,
+                    paramId = p.ParamId,
+                    gtopt = gtopt?.DefineAlias
+                });
+            }
+            return tab;
         }
 
     }
