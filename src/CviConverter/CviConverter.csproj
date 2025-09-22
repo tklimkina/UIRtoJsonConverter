@@ -5,12 +5,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-    <DockerfileContext>.</DockerfileContext>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <PlatformTarget>x86</PlatformTarget>
     <BaseOutputPath>C:\PRJ\CviConverter\build</BaseOutputPath>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+	<SelfContained>false</SelfContained>
+	<RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <NoWarn>NU1605</NoWarn>
   </PropertyGroup>
 
