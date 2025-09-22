@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Hosting;
 using DataBase;
 using Serilog;
+using System.IO;
 
 
 
@@ -28,7 +29,15 @@ namespace CviConverter
                     break;
             }
 
-            string panelname = path.Replace(".uir", "");
+            // to cut all rubbish
+            path += '\0';
+
+            string panelname = path.Replace(".uir\0", "");
+            if(panelname.Contains('\\'))
+            {
+                var pathparts = panelname.Split('\\');
+                panelname = pathparts[pathparts.Length - 1];
+            }
 
             ConfigureServices();
 
@@ -66,9 +75,15 @@ namespace CviConverter
 
         static void SaveJson(List<MainPanel> dtos, string panelname)
         {
-            foreach(var dto in dtos)
+            string outputdir = "jsons";
+            if (!Directory.Exists(outputdir))
             {
-                var filename = dto.name + ".json";
+                Directory.CreateDirectory(outputdir);
+            }
+
+            foreach (var dto in dtos)
+            {
+                var filename = outputdir + "/" + dto.name + ".json";
                 string json = JsonConvert.SerializeObject(dto, Formatting.Indented);
                 File.WriteAllText(filename, json);
             }
