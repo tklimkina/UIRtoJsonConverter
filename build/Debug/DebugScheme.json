@@ -1,0 +1,358 @@
+{
+  "name": "DebugScheme",
+  "description": "Ключ телеуправления",
+  "window": {
+    "width": 1920,
+    "height": 1080,
+    "backgroundColor": "#EBEBEB"
+  },
+  "layout": {
+    "grid": {
+      "cols": 1920,
+      "rows": 1080,
+      "margin": [
+        0,
+        0
+      ]
+    },
+    "frames": [
+      {
+        "id": "LED_4",
+        "x": 264,
+        "y": 33,
+        "width": 70,
+        "height": 70,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 54,
+            "paramId": 2180802,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "LED_3",
+        "x": 185,
+        "y": 33,
+        "width": 70,
+        "height": 70,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 54,
+            "paramId": 2180805,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "LED_2",
+        "x": 101,
+        "y": 33,
+        "width": 70,
+        "height": 70,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 54,
+            "paramId": 2180804,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "LED_9",
+        "x": 207,
+        "y": 186,
+        "width": 22,
+        "height": 24,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 54,
+            "paramId": 2180813,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "LED_8",
+        "x": 123,
+        "y": 186,
+        "width": 22,
+        "height": 24,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 54,
+            "paramId": 2180812,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "LED_7",
+        "x": 39,
+        "y": 186,
+        "width": 22,
+        "height": 24,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 54,
+            "paramId": 2180811,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "LED",
+        "x": 17,
+        "y": 33,
+        "width": 70,
+        "height": 70,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 54,
+            "paramId": 2180803,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG",
+        "x": 27,
+        "y": 52,
+        "width": 53,
+        "height": 32,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "ОДУ",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      },
+      {
+        "id": "LED_5",
+        "x": 25,
+        "y": 112,
+        "width": 305,
+        "height": 41,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_square_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_square_green"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 54,
+            "paramId": 2180806,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_2",
+        "x": 111,
+        "y": 52,
+        "width": 51,
+        "height": 32,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "РДУ",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_3",
+        "x": 195,
+        "y": 52,
+        "width": 53,
+        "height": 32,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "ЦУС",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      },
+      {
+        "id": "LED_6",
+        "x": 119,
+        "y": 263,
+        "width": 131,
+        "height": 50,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_square_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_square_green"
+            }
+          },
+          "rtdata": {
+            "tag": null,
+            "tableId": 35,
+            "paramId": 2026024,
+            "gtopt": "GLT_BOOL_OPT_INSTANT"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_4",
+        "x": 283,
+        "y": 52,
+        "width": 37,
+        "height": 32,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "ПС",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_7",
+        "x": 87,
+        "y": 5,
+        "width": 168,
+        "height": 22,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "Состояние ключа ТУ",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_6",
+        "x": 117,
+        "y": 163,
+        "width": 115,
+        "height": 22,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "Каналы связи",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_5",
+        "x": 81,
+        "y": 237,
+        "width": 211,
+        "height": 22,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "Захватить/освободить ТУ",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      }
+    ]
+  }
+}

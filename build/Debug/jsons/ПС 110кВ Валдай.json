@@ -1,0 +1,53 @@
+{
+  "name": "ПС 110кВ Валдай",
+  "description": "ПС 110/35/10 кВ Валдай",
+  "window": {
+    "width": 1920,
+    "height": 1080,
+    "backgroundColor": "#EBEBEB"
+  },
+  "layout": {
+    "grid": {
+      "cols": 1920,
+      "rows": 1080,
+      "margin": [
+        0,
+        0
+      ]
+    },
+    "frames": [
+      {
+        "id": "TEXTMSG_774",
+        "x": 1490,
+        "y": 21,
+        "width": 216,
+        "height": 26,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "DD.MM.YYYY HH24:MI",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG",
+        "x": 19,
+        "y": 26,
+        "width": 307,
+        "height": 33,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "ПС 110/35/10 кВ Валдай",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "fontStyle": "normal"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "name": "Тест конвертера светодиоды и текст",
+  "description": "Ключ телеуправления",
+  "window": {
+    "backgroundColor": "#EBEBEB",
+    "width": 1920,
+    "height": 1080
+  },
+  "layout": {
+    "grid": {
+      "cols": 1920,
+      "rows": 1080,
+      "margin": [
+        0,
+        0
+      ]
+    },
+    "frames": [
+      {
+        "id": "LED_4",
+        "x": 264,
+        "y": 33,
+        "width": 70,
+        "height": 70,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "LED_3",
+        "x": 185,
+        "y": 33,
+        "width": 70,
+        "height": 70,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "LED_2",
+        "x": 101,
+        "y": 33,
+        "width": 70,
+        "height": 70,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "LED_9",
+        "x": 207,
+        "y": 186,
+        "width": 22,
+        "height": 24,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "LED_8",
+        "x": 123,
+        "y": 186,
+        "width": 22,
+        "height": 24,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "LED_7",
+        "x": 39,
+        "y": 186,
+        "width": 22,
+        "height": 24,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "LED",
+        "x": 17,
+        "y": 33,
+        "width": 70,
+        "height": 70,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_circle_green"
+            },
+            "valueTrue": {
+              "imageName": "lamp_circle_red"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG",
+        "x": 27,
+        "y": 52,
+        "width": 53,
+        "height": 32,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "ОДУ"
+          }
+        }
+      },
+      {
+        "id": "LED_5",
+        "x": 25,
+        "y": 112,
+        "width": 305,
+        "height": 41,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_square_red"
+            },
+            "valueTrue": {
+              "imageName": "lamp_square_green"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_2",
+        "x": 111,
+        "y": 52,
+        "width": 51,
+        "height": 32,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "РДУ"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_3",
+        "x": 195,
+        "y": 52,
+        "width": 53,
+        "height": 32,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "ЦУС"
+          }
+        }
+      },
+      {
+        "id": "LED_6",
+        "x": 119,
+        "y": 263,
+        "width": 131,
+        "height": 50,
+        "widget": {
+          "type": "Analogs.Telesignal",
+          "options": {
+            "visualType": "image",
+            "valueFalse": {
+              "imageName": "lamp_square_red"
+            },
+            "valueTrue": {
+              "imageName": "lamp_square_red"
+            }
+          },
+          "rdata": {
+            "tag": null,
+            "tableId": 0,
+            "paramId": 0,
+            "gtopt": null
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_4",
+        "x": 283,
+        "y": 52,
+        "width": 37,
+        "height": 32,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "ПС"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_7",
+        "x": 87,
+        "y": 5,
+        "width": 168,
+        "height": 22,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "Состояние ключа ТУ"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_6",
+        "x": 117,
+        "y": 163,
+        "width": 115,
+        "height": 22,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "Каналы связи"
+          }
+        }
+      },
+      {
+        "id": "TEXTMSG_5",
+        "x": 81,
+        "y": 237,
+        "width": 211,
+        "height": 22,
+        "widget": {
+          "type": "Labels.SimpleText",
+          "options": {
+            "text": "Захватить/освободить ТУ"
+          }
+        }
+      }
+    ]
+  }
+}

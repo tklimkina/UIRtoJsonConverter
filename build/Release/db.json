@@ -1,0 +1,6 @@
+{
+  "RsduDatabase": {
+    "Provider": "PostgreSQL",
+    "ConnectionString": "Server=10.126.129.10;Port=5432;Database=rsdu;Username=rsduadmin;Password=passme;SearchPath=rsduadmin;"
+  }
+}
