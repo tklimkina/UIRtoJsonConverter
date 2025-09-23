@@ -151,6 +151,8 @@ namespace CviConverter
                                 height = h
                             };
 
+                            num.widget = new SingleValueWidget();
+
                             if (label_visible == 1 && label.ToString().Length != 0)
                             {
                                 LibWrapper.GetCtrlAttributeW(panel, nextControl, (int)Consts.ATTR_LABEL_BOLD, &label_bold);
@@ -240,6 +242,7 @@ namespace CviConverter
                             };
 
                             logo.widget = new RsduLogoWidget() { type = "Labels.Rsdu5Logo" };
+                            PanelDTO.layout.frames.Add(logo);
 
                             break;
 
@@ -322,6 +325,8 @@ namespace CviConverter
                                 LibWrapper.GetTraceAttributeW(panel, nextControl, n, (int)Consts.ATTR_TRACE_COLOR, &value);
                             }
 
+                            PanelDTO.layout.frames.Add(chart);
+
                             break;
 
                         case (int)Consts.CTRL_TABLE:
@@ -340,6 +345,10 @@ namespace CviConverter
                                 type = "Analogs.TableGtp",
                                 options = new TableWidgetOptions()
                             };
+
+
+
+                            PanelDTO.layout.frames.Add(table);
 
                             break;
 
