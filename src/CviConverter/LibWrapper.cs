@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -33,5 +34,19 @@ namespace CviConverter
 
         [DllImport("CviLibsWrapper.dll")]
         public static unsafe extern int GetTraceAttributeW(int panel, int control, int traceNum, int attribute, void* value);
+
+        [DllImport("CviLibsWrapper.dll")]
+        public static unsafe extern int GetNumTableColumnsW(int panel, int control, void* value);
+
+        [DllImport("CviLibsWrapper.dll")]
+        public static unsafe extern int GetNumTableRowsW(int panel, int control, void* value);
+
+        [DllImport("CviLibsWrapper.dll")]
+        public static unsafe extern int GetTableCellValW(int panel, int control, Point cell, StringBuilder value);
+
+        [DllImport("CviLibsWrapper.dll")]
+        public static unsafe extern int GetTableColumnAttributeW(int panelHandle, int controlID, int columnIndex, int columnAttribute, void* attributeValue);
+        [DllImport("CviLibsWrapper.dll")]
+        public static unsafe extern int GetTableCellValdW(int panel, int control, Point cell, void* value);
     }
 }

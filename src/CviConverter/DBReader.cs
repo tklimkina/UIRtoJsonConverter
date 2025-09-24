@@ -16,7 +16,7 @@ namespace CviConverter
             using var dbContext = scope.ServiceProvider.GetRequiredService<RsduDbContext>();
 
             var panel = dbContext.VpPanels
-                                 .Where(v => v.UirName.Contains(dto.name))
+                                 .Where(v => v.UirName.Contains('\\' + dto.name) || v.UirName == dto.name)
                                  .AsNoTracking()
                                  .FirstOrDefault();
 
@@ -33,7 +33,7 @@ namespace CviConverter
 
             if (ctrl == null)
             {
-                Log.Error("Отсутствует описание схемы '{0}' в таблице 'VP_CTRL'. Id схемы: {1}", dto.name, panel.Id);
+                Log.Error("Отсутствует описание схемы '{0}' в таблице 'VP_CTRL'.Id панели: {1}", dto.name, panel.Id);
                 return new List<MainPanel>() { dto };
             }
 
@@ -44,6 +44,12 @@ namespace CviConverter
                                  .Where(v => v.ConstName == dto.layout.frames[i].id)
                                  .AsNoTracking()
                                  .FirstOrDefault();
+
+                if(ctrl == null)
+                {
+                    Log.Error("Отсутствует запись в таблице 'VP_CTRL' для элемента '{0}'. Id панели: {1}", dto.layout.frames[i].id, panel.Id);
+                    continue;
+                }
 
                 switch (dto.layout.frames[i].widget.type)
                 {
@@ -56,7 +62,7 @@ namespace CviConverter
                                              .FirstOrDefault();
                         if (param == null)
                         {
-                            Log.Error("Отсутствует описание параметра для контрольного элемента '{0}'", ctrl.Id);
+                            Log.Error("Отсутствует описание параметра для контрольного элемента {0}. Id панели: {1}", ctrl.Id, panel.Id);
                             continue;
                         }
                         var gtopt = dbContext.SysGtopts
@@ -73,7 +79,7 @@ namespace CviConverter
 
                         if (prms.Count == 0)
                         {
-                            Log.Error("Отсутствует описание параметраов для контрольного элемента '{0}'", ctrl.Id);
+                            Log.Error("Отсутствует описание параметров для контрольного элемента {0} в таблице 'VP_PARAMS'. Id панели: {1}", ctrl.Id, panel.Id);
                             continue;
                         }
 
@@ -88,7 +94,7 @@ namespace CviConverter
 
                         if (prmst.Count == 0)
                         {
-                            Log.Error("Отсутствует описание параметраов для контрольного элемента '{0}'", ctrl.Id);
+                            Log.Error("Отсутствует описание параметров для контрольного элемента {0}. Id панели: {1}", ctrl.Id, panel.Id);
                             continue;
                         }
 

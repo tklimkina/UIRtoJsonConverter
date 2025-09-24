@@ -105,6 +105,7 @@ namespace CviConverter
         ATTR_POINTS_PER_SCREEN = 1171,
         ATTR_TRACE_COLOR = 1230,
         ATTR_PICT_BGCOLOR = 1291,
+        ATTR_COLUMN_WIDTH = 1700,
         ATTR_XLABEL_COLOR = 2501,
         ZPLANE_MAX_VALUE = 9999,
 

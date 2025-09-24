@@ -1,5 +1,7 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
 using CviConverter.DTO;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace CviConverter
@@ -151,7 +153,7 @@ namespace CviConverter
                                 height = h
                             };
 
-                            num.widget = new SingleValueWidget();
+                            num.widget = new SingleValueWidget() { type = "Analogs.SingleValue" };
 
                             if (label_visible == 1 && label.ToString().Length != 0)
                             {
@@ -340,14 +342,75 @@ namespace CviConverter
                                 id = constant_name.ToString()
                             };
 
-                            table.widget = new TableWidget() 
+                            var twid = new TableWidget() 
                             { 
-                                type = "Analogs.TableGtp",
-                                options = new TableWidgetOptions()
+                                type = "Analogs.TableGtp"
                             };
 
+                            var opts = new TableWidgetOptions(); 
 
+                            /////////////////////////////////////// Table's content ////////////////////////////////////////
+                            
+                            // Creating cells
+                            int numCols, numRows;
 
+                            LibWrapper.GetNumTableColumnsW(panel, nextControl, &numCols);
+                            LibWrapper.GetNumTableRowsW(panel, nextControl, &numRows);
+
+                            for (int i = 0; i < numCols; i++)
+                                opts.table.columns.Add(new Column());
+                            for (int i = 0; i < numRows; i++)
+                            {
+                                var row = new Row();
+
+                                for (int j = 0; j < numCols; j++)
+                                    row.columnsData.Add(new ColumnData());
+
+                                opts.table.rows.Add(row);
+                            }
+
+                            //  Filling data
+                            // cols                         tables indexes start from 1
+                            //int widthpererr = 100;
+                            for (int i = 1; i <= numCols; i++)
+                            {
+                                int colwidth;
+                                LibWrapper.GetTableColumnAttributeW(panel, nextControl, i, (int)Consts.ATTR_COLUMN_WIDTH, &colwidth);
+                                double widthpercent = Math.Round((double)colwidth / (double)w * 100);
+                                opts.table.columns[i - 1].width = (int)widthpercent;
+                               // widthpererr -= (int)widthpercent;
+                            }
+
+                                //  rows
+                                for (int i = 0; i < numRows; i++)
+                                for(int j = 0; j < numCols; j++)
+                                {
+                                    var cell = new Point() { X = j + 1, Y = i + 1};
+                                    LibWrapper.GetTableCellValW(panel, nextControl, cell, label);
+
+                                    double v;
+
+                                    if(label.ToString() == "")
+                                        try
+                                        {
+                                            LibWrapper.GetTableCellValdW(panel, nextControl, cell, &v);
+                                        }
+                                        catch { }
+
+                                    // The first column is label
+                                    if (j == 0 && i > 0)
+                                        opts.table.rows[i].columnsData[j].label = label.ToString();
+                                    //opts.table.columns[j].header.label = label.ToString();
+                                    else if (i == 0)
+                                        opts.table.columns[j].header.label = label.ToString();
+                                    //opts.table.rows[i].columnsData[j].label = label.ToString();
+                                    else
+                                        opts.table.rows[i].columnsData[j].tag = label.ToString();
+                                }
+
+                                /////////////////////////////////////////////////////////////////////////////////////////
+                                twid.options = opts;
+                            table.widget = twid;
                             PanelDTO.layout.frames.Add(table);
 
                             break;

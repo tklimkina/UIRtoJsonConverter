@@ -1,15 +1,7 @@
 #include "..\cvi85\include\userint.h" // заголовочный файл от .lib
-//#include <atlconv.h>
 #include "pch.h"
 #include "wrapper.h"
-//#include <string>
 #include <iostream>
-/*#include <fstream>
-#include <iomanip>
-#include <iterator>
-#include <sstream>*/
-//#include <altbase.h>
-//#pragma comment(lib, "..\cvi85\extlib\cvirt.lib")
 
 void ClosePanel(int panel)
 {
@@ -70,6 +62,26 @@ extern "C"
      __declspec(dllexport) int __stdcall GetTraceAttributeW(int panel, int control, int traceNum, int attribute, void* value)
      {
          return  GetTraceAttribute(panel, control, traceNum, attribute, value);
+     }
+     __declspec(dllexport) int __stdcall GetNumTableColumnsW(int panel, int control, void* value)
+     {
+         return GetNumTableColumns( panel, control,value);
+     }
+     __declspec(dllexport) int __stdcall GetNumTableRowsW(int panel, int control, void* value)
+     {
+         return GetNumTableRows(panel, control, value);
+     }
+     __declspec(dllexport) int __stdcall GetTableCellValW(int panel, int control, Point cell, char* value)
+     {
+         return GetTableCellVal(panel, control, cell, value);
+     }
+     __declspec(dllexport) int __stdcall GetTableColumnAttributeW(int panelHandle, int controlID, int columnIndex, int columnAttribute, void* attributeValue)
+     {
+         return GetTableColumnAttribute(panelHandle, controlID, columnIndex, columnAttribute, attributeValue);
+     }
+     __declspec(dllexport) int __stdcall GetTableCellValdW(int panel, int control, Point cell, void* value)
+     {
+         return GetTableCellVal(panel, control, cell, value);
      }
 }
 

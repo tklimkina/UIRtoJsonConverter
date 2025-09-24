@@ -7,6 +7,11 @@ extern "C"
 {
     // types
 typedef  int(__cdecl* PanelCallbackPtr)(int panel, int event, void* callbackData, int eventData1, int eventData2);
+typedef struct
+{
+    int X;
+    int Y;
+} Point;
 
     // funcs
 __declspec(dllexport) int __stdcall LoadPanel(int parentPanel, const char* fileName, int panelResourceId);
@@ -17,5 +22,8 @@ __declspec(dllexport) int __stdcall InstallPanelCallback(int panel, PanelCallbac
 __declspec(dllexport) int __stdcall GetPanelAttribute(int panel, int attribute, void* value);
 __declspec(dllexport) int __stdcall GetCtrlAttribute(int panel, int control, int attribute, void* value);
 __declspec(dllexport) int __stdcall GetTraceAttribute(int panel, int control, int traceNum, int attribute, void* value);
-
+__declspec(dllexport) int __stdcall GetNumTableColumns(int panel, int control, void* value);
+__declspec(dllexport) int __stdcall GetNumTableRows(int panel, int control, void* value);
+__declspec(dllexport) int __stdcall GetTableCellVal(int panel, int control, Point cell, void* value);
+__declspec(dllexport) int __stdcall GetTableColumnAttribute(int panelHandle, int controlID, int columnIndex, int columnAttribute, void* attributeValue);
 }
