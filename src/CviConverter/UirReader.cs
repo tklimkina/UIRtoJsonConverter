@@ -371,41 +371,39 @@ namespace CviConverter
 
                             //  Filling data
                             // cols                         tables indexes start from 1
-                            //int widthpererr = 100;
                             for (int i = 1; i <= numCols; i++)
                             {
                                 int colwidth;
                                 LibWrapper.GetTableColumnAttributeW(panel, nextControl, i, (int)Consts.ATTR_COLUMN_WIDTH, &colwidth);
                                 double widthpercent = Math.Round((double)colwidth / (double)w * 100);
                                 opts.table.columns[i - 1].width = (int)widthpercent;
-                               // widthpererr -= (int)widthpercent;
                             }
 
-                                //  rows
+                            //  rows
+
+                            string cellval;
                                 for (int i = 0; i < numRows; i++)
                                 for(int j = 0; j < numCols; j++)
                                 {
                                     var cell = new Point() { X = j + 1, Y = i + 1};
-                                    LibWrapper.GetTableCellValW(panel, nextControl, cell, label);
+                                    LibWrapper.GetTableStrCellValW(panel, nextControl, cell, label);
 
-                                    double v;
+                                    double v = -999999;                   // GetTableCellVal() doesn't work with nullable 
+                                    cellval = label.ToString();
 
-                                    if(label.ToString() == "")
-                                        try
-                                        {
-                                            LibWrapper.GetTableCellValdW(panel, nextControl, cell, &v);
-                                        }
-                                        catch { }
+                                    if (cellval == "")
+                                    {
+                                        LibWrapper.GetTableCellValW(panel, nextControl, cell, &v);
+                                        cellval = v == -999999 ? "" : v.ToString();
+                                    }
 
                                     // The first column is label
                                     if (j == 0 && i > 0)
-                                        opts.table.rows[i].columnsData[j].label = label.ToString();
-                                    //opts.table.columns[j].header.label = label.ToString();
+                                        opts.table.rows[i].columnsData[j].label = cellval;
                                     else if (i == 0)
-                                        opts.table.columns[j].header.label = label.ToString();
-                                    //opts.table.rows[i].columnsData[j].label = label.ToString();
+                                        opts.table.columns[j].header.label = cellval;
                                     else
-                                        opts.table.rows[i].columnsData[j].tag = label.ToString();
+                                        opts.table.rows[i].columnsData[j].tag = cellval;
                                 }
 
                                 /////////////////////////////////////////////////////////////////////////////////////////

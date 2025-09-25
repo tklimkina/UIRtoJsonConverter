@@ -71,7 +71,11 @@ extern "C"
      {
          return GetNumTableRows(panel, control, value);
      }
-     __declspec(dllexport) int __stdcall GetTableCellValW(int panel, int control, Point cell, char* value)
+     __declspec(dllexport) int __stdcall GetTableStrCellValW(int panel, int control, Point cell, char* value)
+     {
+         return GetTableCellVal(panel, control, cell, value);
+     }
+     __declspec(dllexport) int __stdcall GetTableCellValW(int panel, int control, Point cell, void* value)
      {
          return GetTableCellVal(panel, control, cell, value);
      }
@@ -79,9 +83,9 @@ extern "C"
      {
          return GetTableColumnAttribute(panelHandle, controlID, columnIndex, columnAttribute, attributeValue);
      }
-     __declspec(dllexport) int __stdcall GetTableCellValdW(int panel, int control, Point cell, void* value)
+     __declspec(dllexport) int __stdcall GetCtrlValW(int panelHandle, int controlID, void* value)
      {
-         return GetTableCellVal(panel, control, cell, value);
+         return GetCtrlValW(panelHandle, controlID, value);
      }
 }
 

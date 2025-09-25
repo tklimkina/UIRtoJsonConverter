@@ -42,11 +42,14 @@ namespace CviConverter
         public static unsafe extern int GetNumTableRowsW(int panel, int control, void* value);
 
         [DllImport("CviLibsWrapper.dll")]
-        public static unsafe extern int GetTableCellValW(int panel, int control, Point cell, StringBuilder value);
+        public static unsafe extern int GetTableStrCellValW(int panel, int control, Point cell, StringBuilder value);
 
         [DllImport("CviLibsWrapper.dll")]
         public static unsafe extern int GetTableColumnAttributeW(int panelHandle, int controlID, int columnIndex, int columnAttribute, void* attributeValue);
         [DllImport("CviLibsWrapper.dll")]
-        public static unsafe extern int GetTableCellValdW(int panel, int control, Point cell, void* value);
+        public static unsafe extern int GetCtrlValW(int panelHandle, int controlID, void* value);
+
+        [DllImport("CviLibsWrapper.dll")]
+        public static unsafe extern int GetTableCellValW(int panel, int control, Point cell, void* value);
     }
 }
