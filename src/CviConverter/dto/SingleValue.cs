@@ -32,7 +32,7 @@ namespace CviConverter.DTO
     }
     public class Wrapper
     {
-        public string backgroundColor { get; set; }
+        public string backgroundColor { get; set; } = "white";
     }
     public class Unit : WidgetTextBase
     {
@@ -46,14 +46,14 @@ namespace CviConverter.DTO
     public class SingleValueWidgetOptionsValue
     {
         public int digitsAfterDot { get; set; }
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string color { get; set; }
+       // [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string color { get; set; } = "#000000";
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public int fontSize { get; set; }
+        public int fontSize { get; set; } = 16;
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public int fontWeight { get; set; }
+        public int fontWeight { get; set; } = 400;
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string fontStyle { get; set; }

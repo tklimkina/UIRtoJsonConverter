@@ -16,11 +16,11 @@ namespace CviConverter
             using var dbContext = scope.ServiceProvider.GetRequiredService<RsduDbContext>();
 
             var panel = dbContext.VpPanels
-                                 .Where(v => v.UirName.Contains('\\' + dto.name) || v.UirName == dto.name)
+                                 .Where(v => v.UirName.Contains('\\' + dto.name + ".uir") || v.UirName == dto.name + ".uir")
                                  .AsNoTracking()
                                  .FirstOrDefault();
 
-            if(panel == null)
+            if (panel == null)
             {
                 Log.Error("Отсутствует описание схемы '{0}' в таблице 'VP_PANEL'", dto.name);
                 return new List<MainPanel> (){ dto };

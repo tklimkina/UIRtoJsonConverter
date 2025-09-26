@@ -31,9 +31,9 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             switch (Database.ProviderName)
             {
-               /* case "Oracle.EntityFrameworkCore":
+                case "Oracle.EntityFrameworkCore":
                     modelBuilder.UseOracle();
-                    break;*/
+                    break;
 
                 case "Npgsql.EntityFrameworkCore.PostgreSQL":
                     modelBuilder.UsePostgre();
