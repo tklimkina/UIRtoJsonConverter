@@ -188,6 +188,7 @@ namespace CviConverter
 
                             im.widget = new RTImageWidget() { type = "Analogs.RTImage" };
 
+                            PanelDTO.layout.frames.Add(im);
                             break;
 
                         case (int)Consts.CTRL_ROUND_LIGHT:

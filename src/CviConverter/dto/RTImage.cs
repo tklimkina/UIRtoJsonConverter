@@ -20,8 +20,8 @@ namespace CviConverter.DTO
     {
         public List<RTImageWidgetOptionsValue> values = new List<RTImageWidgetOptionsValue>() 
         { 
-            new RTImageWidgetOptionsValue(){ value = 0},
-            new RTImageWidgetOptionsValue(){ value = 1}
+            new RTImageWidgetOptionsValue(){ value = 0, image = "http://10.51.128.42:8080/rsdu/img/otkl.png" },
+            new RTImageWidgetOptionsValue(){ value = 1, image = "http://10.51.128.42:8080/rsdu/img/vkl.png"}
         };
     }
     public class RTImageWidgetOptionsValue
