@@ -27,4 +27,5 @@ __declspec(dllexport) int __stdcall GetNumTableRows(int panel, int control, void
 __declspec(dllexport) int __stdcall GetTableCellVal(int panel, int control, Point cell, void* value);
 __declspec(dllexport) int __stdcall GetTableColumnAttribute(int panelHandle, int controlID, int columnIndex, int columnAttribute, void* attributeValue);
 __declspec(dllexport) int __stdcall GetCtrlVal(int panelHandle, int controlID, void* value);
+//__declspec(dllexport) int __stdcall
 }
