@@ -28,7 +28,7 @@ namespace CviConverter.DTO
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Unit unit { get; set; } = new Unit();
-        public RtData rtdata { get; set; } = new RtData();
+        public List<RtData> rtdata { get; set; } = new List<RtData>();
     }
     public class Wrapper
     {

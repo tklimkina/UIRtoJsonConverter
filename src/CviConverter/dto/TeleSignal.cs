@@ -14,7 +14,7 @@ namespace CviConverter.DTO
     public class TeleSignalWidget : BaseWidget
     {
         public TeleSignalWidgetOptions options { get; set; } = new TeleSignalWidgetOptions();
-        public RtData rtdata { get; set; } = new RtData();
+        public List<RtData> rtdata { get; set; } = new List<RtData>();
     }
 
     public class TeleSignalWidgetOptions : BaseWidgetOptions

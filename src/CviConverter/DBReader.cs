@@ -172,23 +172,29 @@ namespace CviConverter
         }
         internal static RTImageWidget FillRtDataIm(dynamic widget, VpParam param, SysGtopt gtopt)
         {
-            widget.rtdata.paramId = param.ParamId;
-            widget.rtdata.tableId = param.TableId;
-            widget.rtdata.gtopt = gtopt?.DefineAlias;
+            var rtd = new RtData();
+            rtd.paramId = param.ParamId;
+            rtd.tableId = param.TableId;
+            rtd.gtopt = gtopt?.DefineAlias;
+            widget.rtdata.Add(rtd);
             return widget;
         }
         internal static TeleSignalWidget FillRtDataSig(dynamic widget, VpParam param, SysGtopt gtopt)
         {
-            widget.rtdata.paramId = param.ParamId;
-            widget.rtdata.tableId = param.TableId;
-            widget.rtdata.gtopt = gtopt?.DefineAlias;
+            var rtd = new RtData();
+            rtd.paramId = param.ParamId;
+            rtd.tableId = param.TableId;
+            rtd.gtopt = gtopt?.DefineAlias;
+            widget.rtdata.Add(rtd);
             return widget;
         }
         internal static SingleValueWidget FillRtDataVal(dynamic widget, VpParam param, SysGtopt gtopt)
         {
-            widget.options.rtdata.paramId = param.ParamId;
-            widget.options.rtdata.tableId = param.TableId;
-            widget.options.rtdata.gtopt = gtopt?.DefineAlias;
+            var rtd = new RtData();
+            rtd.paramId = param.ParamId;
+            rtd.tableId = param.TableId;
+            rtd.gtopt = gtopt?.DefineAlias;
+            widget.options.rtdata.Add(rtd);
             return widget;
         }
         internal static ChartRTDTracking FillRtDataCh (dynamic chart, List<VpParam> prms, RsduDbContext dbContext)

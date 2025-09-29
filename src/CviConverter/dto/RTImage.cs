@@ -14,7 +14,7 @@ namespace CviConverter.DTO
     public class RTImageWidget : BaseWidget
     {
         public RTImageWidgetOptions options { get; set; } = new RTImageWidgetOptions();
-        public RtData rtdata { get; set; } = new RtData();
+        public List<RtData> rtdata { get; set; } = new List<RtData>();
     }
     public class RTImageWidgetOptions : BaseWidgetOptions
     {
