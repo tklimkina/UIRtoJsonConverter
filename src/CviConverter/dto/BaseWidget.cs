@@ -19,7 +19,7 @@ namespace CviConverter.DTO
     }
     public class RtData
     {
-        public string tag { get; set; }
+        public string tag { get; set; } = string.Empty;
         public int tableId { get; set; }
         public int paramId { get; set; }
         public string gtopt { get; set; }
