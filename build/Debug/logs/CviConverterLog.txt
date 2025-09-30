@@ -23,3 +23,151 @@
 2025-09-29 10:28:09.370 +07:00 [ERR] Отсутствует описание параметров для контрольного элемента 44920. Id панели: 208
 2025-09-29 10:28:09.654 +07:00 [ERR] Отсутствует описание параметров для контрольного элемента 44914. Id панели: 208
 2025-09-29 10:28:12.749 +07:00 [ERR] Отсутствует описание схемы 'ПС 110кВ Валдай' в таблице 'VP_PANEL'
+2025-09-30 10:37:10.862 +07:00 [ERR] An error occurred using the connection to database 'rsdu' on server ''.
+2025-09-30 10:37:10.978 +07:00 [ERR] An exception occurred while iterating over the results of a query for context type 'DataBase.RsduDbContext'.
+Npgsql.PostgresException (0x80004005): 28P01: пользователь "KlimkinaTV" не прошёл проверку подлинности (по паролю)
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|221_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|203_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__21_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ВАЖНО
+    SqlState: 28P01
+    MessageText: пользователь "KlimkinaTV" не прошёл проверку подлинности (по паролю)
+    File: auth.c
+    Line: 329
+    Routine: auth_failed
+Npgsql.PostgresException (0x80004005): 28P01: пользователь "KlimkinaTV" не прошёл проверку подлинности (по паролю)
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|221_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|203_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__21_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ВАЖНО
+    SqlState: 28P01
+    MessageText: пользователь "KlimkinaTV" не прошёл проверку подлинности (по паролю)
+    File: auth.c
+    Line: 329
+    Routine: auth_failed
+2025-09-30 10:38:52.596 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURE_57'. Id панели: 208
+2025-09-30 10:38:52.628 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'TABLE_15'. Id панели: 208
+2025-09-30 10:38:52.696 +07:00 [ERR] Отсутствует описание параметров для контрольного элемента 44923. Id панели: 208
+2025-09-30 10:38:52.697 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'TABLE_6'. Id панели: 208
+2025-09-30 10:38:52.699 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'TABLE_12'. Id панели: 208
+2025-09-30 10:38:52.701 +07:00 [ERR] Отсутствует описание параметров для контрольного элемента 44915. Id панели: 208
+2025-09-30 10:38:52.703 +07:00 [ERR] Отсутствует описание параметров для контрольного элемента 44920. Id панели: 208
+2025-09-30 10:38:53.069 +07:00 [ERR] Отсутствует описание параметров для контрольного элемента 44914. Id панели: 208
+2025-09-30 10:38:53.091 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_549'. Id панели: 208
+2025-09-30 10:38:53.093 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 44946. Id панели: 208
+2025-09-30 10:38:53.126 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_716'. Id панели: 208
+2025-09-30 10:38:53.130 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_663'. Id панели: 208
+2025-09-30 10:38:53.131 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_664'. Id панели: 208
+2025-09-30 10:38:53.132 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_665'. Id панели: 208
+2025-09-30 10:38:53.133 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_611'. Id панели: 208
+2025-09-30 10:38:53.134 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_612'. Id панели: 208
+2025-09-30 10:38:53.135 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_609'. Id панели: 208
+2025-09-30 10:38:53.136 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_607'. Id панели: 208
+2025-09-30 10:38:53.137 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_688'. Id панели: 208
+2025-09-30 10:38:53.138 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_689'. Id панели: 208
+2025-09-30 10:38:53.148 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_593'. Id панели: 208
+2025-09-30 10:38:53.149 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_637'. Id панели: 208
+2025-09-30 10:38:53.150 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_631'. Id панели: 208
+2025-09-30 10:38:53.151 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_694'. Id панели: 208
+2025-09-30 10:38:53.152 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_643'. Id панели: 208
+2025-09-30 10:38:53.153 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_645'. Id панели: 208
+2025-09-30 10:38:53.154 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_597'. Id панели: 208
+2025-09-30 10:38:53.154 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_668'. Id панели: 208
+2025-09-30 10:38:53.155 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_669'. Id панели: 208
+2025-09-30 10:38:53.158 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_598'. Id панели: 208
+2025-09-30 10:38:53.159 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_617'. Id панели: 208
+2025-09-30 10:38:53.160 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_670'. Id панели: 208
+2025-09-30 10:38:53.161 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_671'. Id панели: 208
+2025-09-30 10:38:53.162 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_672'. Id панели: 208
+2025-09-30 10:38:53.165 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_695'. Id панели: 208
+2025-09-30 10:38:53.166 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_622'. Id панели: 208
+2025-09-30 10:38:53.167 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_661'. Id панели: 208
+2025-09-30 10:38:53.168 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_696'. Id панели: 208
+2025-09-30 10:38:53.169 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_662'. Id панели: 208
+2025-09-30 10:38:53.170 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_697'. Id панели: 208
+2025-09-30 10:38:53.171 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_624'. Id панели: 208
+2025-09-30 10:38:53.172 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_698'. Id панели: 208
+2025-09-30 10:38:53.176 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_620'. Id панели: 208
+2025-09-30 10:38:53.177 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_700'. Id панели: 208
+2025-09-30 10:38:53.178 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_618'. Id панели: 208
+2025-09-30 10:38:53.191 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_639'. Id панели: 208
+2025-09-30 10:38:53.200 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_703'. Id панели: 208
+2025-09-30 10:38:53.202 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_704'. Id панели: 208
+2025-09-30 10:38:53.206 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_705'. Id панели: 208
+2025-09-30 10:38:53.208 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_641'. Id панели: 208
+2025-09-30 10:38:53.210 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_706'. Id панели: 208
+2025-09-30 10:38:53.211 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_666'. Id панели: 208
+2025-09-30 10:38:53.212 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_635'. Id панели: 208
+2025-09-30 10:38:53.215 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_667'. Id панели: 208
+2025-09-30 10:38:53.216 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_707'. Id панели: 208
+2025-09-30 10:38:53.219 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_708'. Id панели: 208
+2025-09-30 10:38:53.220 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_633'. Id панели: 208
+2025-09-30 10:38:53.221 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_602'. Id панели: 208
+2025-09-30 10:38:53.222 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_709'. Id панели: 208
+2025-09-30 10:38:53.223 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_710'. Id панели: 208
+2025-09-30 10:38:53.224 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_613'. Id панели: 208
+2025-09-30 10:38:53.225 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_711'. Id панели: 208
+2025-09-30 10:38:53.226 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_604'. Id панели: 208
+2025-09-30 10:38:53.227 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_712'. Id панели: 208
+2025-09-30 10:38:53.228 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_610'. Id панели: 208
+2025-09-30 10:38:53.229 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_713'. Id панели: 208
+2025-09-30 10:38:53.231 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_714'. Id панели: 208
+2025-09-30 10:38:53.232 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_715'. Id панели: 208
+2025-09-30 10:38:53.232 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_608'. Id панели: 208
+2025-09-30 10:38:53.234 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45090. Id панели: 208
+2025-09-30 10:38:53.235 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_606'. Id панели: 208
+2025-09-30 10:38:53.236 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_673'. Id панели: 208
+2025-09-30 10:38:53.237 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_674'. Id панели: 208
+2025-09-30 10:38:53.238 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45091. Id панели: 208
+2025-09-30 10:38:53.240 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45096. Id панели: 208
+2025-09-30 10:38:53.241 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_675'. Id панели: 208
+2025-09-30 10:38:53.242 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45098. Id панели: 208
+2025-09-30 10:38:53.243 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_676'. Id панели: 208
+2025-09-30 10:38:53.244 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45100. Id панели: 208
+2025-09-30 10:38:53.246 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_686'. Id панели: 208
+2025-09-30 10:38:53.246 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_677'. Id панели: 208
+2025-09-30 10:38:53.247 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_687'. Id панели: 208
+2025-09-30 10:38:53.249 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45104. Id панели: 208
+2025-09-30 10:38:53.251 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45105. Id панели: 208
+2025-09-30 10:38:53.251 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_629'. Id панели: 208
+2025-09-30 10:38:53.252 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_628'. Id панели: 208
+2025-09-30 10:38:53.254 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45107. Id панели: 208
+2025-09-30 10:38:53.255 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45108. Id панели: 208
+2025-09-30 10:38:53.256 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_627'. Id панели: 208
+2025-09-30 10:38:53.257 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45109. Id панели: 208
+2025-09-30 10:38:53.258 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_626'. Id панели: 208
+2025-09-30 10:38:53.260 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45131. Id панели: 208
+2025-09-30 10:38:53.261 +07:00 [ERR] Отсутствует запись в таблице 'VP_CTRL' для элемента 'PICTURERING_625'. Id панели: 208
+2025-09-30 10:38:53.262 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45170. Id панели: 208
+2025-09-30 10:38:53.281 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45191. Id панели: 208
+2025-09-30 10:38:53.283 +07:00 [ERR] Отсутствует описание параметра для контрольного элемента 45193. Id панели: 208

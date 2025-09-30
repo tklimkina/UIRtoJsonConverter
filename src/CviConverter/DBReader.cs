@@ -15,10 +15,20 @@ namespace CviConverter
             using var scope = services.CreateScope();
             using var dbContext = scope.ServiceProvider.GetRequiredService<RsduDbContext>();
 
-            var panel = dbContext.VpPanels
+            var panel = new VpPanel();
+
+            try
+            {
+                panel = dbContext.VpPanels
                                  .Where(v => v.UirName.Contains('\\' + dto.name + ".uir") || v.UirName == dto.name + ".uir")
                                  .AsNoTracking()
                                  .FirstOrDefault();
+            }
+            catch
+            {
+                Console.WriteLine("Не удалось подключиться к БД. Настройки панели не будут считаны.");
+                return new List<MainPanel>() { dto };
+            }
 
             if (panel == null)
             {
