@@ -1,0 +1,6 @@
+{
+  "RsduDatabase": {
+    "Provider": "PostgreSQL",
+    "ConnectionString": "Server=server;Port=port;Database=database;Username=username;Password=password;SearchPath=searchpath;"
+  }
+}
