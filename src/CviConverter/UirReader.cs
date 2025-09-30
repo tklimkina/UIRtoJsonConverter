@@ -22,7 +22,7 @@ namespace CviConverter
 
             LibWrapper.InstallPanelCallbackW(panel);
 
-            LibWrapper.DisplayPanelW(panel);
+           // LibWrapper.DisplayPanelW(panel);
 
             return CreateDTO(panel, panelname);
         }

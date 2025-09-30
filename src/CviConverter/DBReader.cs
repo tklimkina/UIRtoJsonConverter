@@ -27,7 +27,18 @@ namespace CviConverter
             catch
             {
                 Console.WriteLine("Не удалось подключиться к БД. Настройки панели не будут считаны.");
-                return new List<MainPanel>() { dto };
+
+                string ifcontinue = "";
+                while( ifcontinue != "y" && ifcontinue != "n")
+                {
+                    Console.WriteLine("Продолжить конвертацию без привязки к БД? (y/n)");
+                    ifcontinue = Console.ReadLine();
+                }
+
+                if (ifcontinue == "y")
+                    return new List<MainPanel>() { dto };
+                else
+                    Environment.Exit(0);
             }
 
             if (panel == null)
