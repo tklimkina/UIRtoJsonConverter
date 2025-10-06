@@ -215,7 +215,7 @@ namespace CviConverter
             rtd.paramId = param.ParamId;
             rtd.tableId = param.TableId;
             rtd.gtopt = gtopt?.DefineAlias;
-            widget.options.rtdata.Add(rtd);
+            widget.rtdata.Add(rtd);
             return widget;
         }
         internal static ChartRTDTracking FillRtDataCh (dynamic chart, List<VpParam> prms, RsduDbContext dbContext)

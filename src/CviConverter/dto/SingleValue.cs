@@ -14,6 +14,7 @@ namespace CviConverter.DTO
     public class SingleValueWidget : BaseWidget
     {
         public SingleValueWidgetOptions options { get; set; } = new SingleValueWidgetOptions();
+        public List<RtData> rtdata { get; set; } = new List<RtData>();
     }
     public class SingleValueWidgetOptions : BaseWidgetOptions
     {
@@ -28,7 +29,6 @@ namespace CviConverter.DTO
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Unit unit { get; set; } = new Unit();
-        public List<RtData> rtdata { get; set; } = new List<RtData>();
     }
     public class Wrapper
     {
