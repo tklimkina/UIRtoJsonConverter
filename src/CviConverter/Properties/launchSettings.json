@@ -2,7 +2,7 @@
   "profiles": {
     "CviConverter": {
       "commandName": "Project",
-      "commandLineArgs": "\"ПС 110_35_10 кВ Валдай.uir\""
+      "commandLineArgs": "\"Test dlya web.uir\""
     },
     "Container (Dockerfile)": {
       "commandName": "Docker"
