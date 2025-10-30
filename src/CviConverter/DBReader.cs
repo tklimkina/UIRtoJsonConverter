@@ -43,7 +43,7 @@ namespace CviConverter
 
             if (panel == null)
             {
-                Log.Error("Отсутствует описание схемы '{0}' в таблице 'VP_PANEL'", dto.name);
+                Log.Error("Отсутствует описание панели '{0}' в таблице 'VP_PANEL'", dto.name);
                 return new List<MainPanel> (){ dto };
             }
 
@@ -54,7 +54,7 @@ namespace CviConverter
 
             if (ctrl == null)
             {
-                Log.Error("Отсутствует описание схемы '{0}' в таблице 'VP_CTRL'.Id панели: {1}", dto.name, panel.Id);
+                Log.Error("Отсутствует описание панели '{0}' в таблице 'VP_CTRL'.Id панели: {1}", dto.name, panel.Id);
                 return new List<MainPanel>() { dto };
             }
 
