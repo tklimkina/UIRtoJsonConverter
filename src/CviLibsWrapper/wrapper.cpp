@@ -1,4 +1,3 @@
-#include "..\cvi85\include\userint.h" // заголовочный файл от .lib
 #include "pch.h"
 #include "wrapper.h"
 #include <iostream>
