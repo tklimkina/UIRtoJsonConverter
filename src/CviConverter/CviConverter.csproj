@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <PlatformTarget>x86</PlatformTarget>
-    <BaseOutputPath>C:\PRJ\CviConverter\build</BaseOutputPath>
+    <BaseOutputPath>..\..\build\</BaseOutputPath>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
 	<SelfContained>false</SelfContained>
 	<RuntimeIdentifier>win-x86</RuntimeIdentifier>
@@ -28,6 +28,10 @@
     <FileAlignment>512</FileAlignment>
     <DebugType>portable</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DebugScheme.h" />
+  </ItemGroup>
 
 <ItemGroup>
   <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />

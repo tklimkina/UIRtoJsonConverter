@@ -2,7 +2,7 @@
   "profiles": {
     "CviConverter": {
       "commandName": "Project",
-      "commandLineArgs": "\"Test dlya web.uir\""
+      "commandLineArgs": "\"DebugScheme.uir\""
     },
     "Container (Dockerfile)": {
       "commandName": "Docker"
