@@ -11,10 +11,10 @@ using Microsoft.Extensions.Options;
 
 namespace DataBase
 {
-    public class RsduDbContext : DbContext
+    public class DbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         //Transfering options
-        public RsduDbContext(DbContextOptions<RsduDbContext> options)
+        public DbContext(DbContextOptions<DbContext> options)
             : base(options)
         {
 

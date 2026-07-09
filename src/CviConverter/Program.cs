@@ -96,7 +96,7 @@ namespace CviConverter
             var filename = "db.json";
             string json = File.ReadAllText(filename);
             var jObject = JObject.Parse(json);
-            var ConnectionOpts = jObject["RsduDatabase"].ToObject<DbConnectionOptions>();
+            var ConnectionOpts = jObject["DatabaseSettings"].ToObject<DbConnectionOptions>();
             return ConnectionOpts;
         }
     }

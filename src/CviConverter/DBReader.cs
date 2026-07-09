@@ -13,7 +13,7 @@ namespace CviConverter
         public static List<MainPanel> ReadSettingsFromDB(IServiceProvider services, MainPanel dto)
         {
             using var scope = services.CreateScope();
-            using var dbContext = scope.ServiceProvider.GetRequiredService<RsduDbContext>();
+            using var dbContext = scope.ServiceProvider.GetRequiredService<DataBase.DbContext>();
 
             var panel = new VpPanel();
 
@@ -133,7 +133,7 @@ namespace CviConverter
             return new List<MainPanel>() { dto };
         }
 
-        internal static List<MainPanel> DistributeToTabs(RsduDbContext dbContext, MainPanel dto, int pId)
+        internal static List<MainPanel> DistributeToTabs(DataBase.DbContext dbContext, MainPanel dto, int pId)
         {
             var res = new List<MainPanel>();
             var tabs = new Dictionary<string?, List<IPanel>>();
@@ -218,7 +218,7 @@ namespace CviConverter
             widget.rtdata.Add(rtd);
             return widget;
         }
-        internal static ChartRTDTracking FillRtDataCh (dynamic chart, List<VpParam> prms, RsduDbContext dbContext)
+        internal static ChartRTDTracking FillRtDataCh (dynamic chart, List<VpParam> prms, DataBase.DbContext dbContext)
         {
             foreach ( var p in prms)
             {
@@ -243,7 +243,7 @@ namespace CviConverter
             }
             return chart;
         }
-        internal static TableWidget FillRtDataT (dynamic tab, List<VpParam> prms, RsduDbContext dbContext)
+        internal static TableWidget FillRtDataT (dynamic tab, List<VpParam> prms, DataBase.DbContext dbContext)
         {
             foreach (var p in prms)
             {

@@ -9,12 +9,12 @@ namespace DataBase
             switch (options.Provider)
             {
                 case "Oracle":
-                    services.AddDbContext<RsduDbContext>(opt =>
+                    services.AddDbContext<DbContext>(opt =>
                             opt.UseOracle(options.ConnectionString,
                                 o => o.UseOracleSQLCompatibility("11")));
                     break;
                 case "PostgreSQL":
-                    services.AddDbContext<RsduDbContext>(opt =>
+                    services.AddDbContext<DbContext>(opt =>
                             opt.UseNpgsql(options.ConnectionString,
                                 o => o.SetPostgresVersion(11, 5)));
                     break;
