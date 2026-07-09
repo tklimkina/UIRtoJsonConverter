@@ -5,8 +5,8 @@ A utility for converting National Instruments LabWindows/CVI `.uir` files into J
 The project was developed to convert NI LabWindows .uir files into .json files for displaying the electrical panel which initially were created with LabWindows in web-pages. The application accepts a name of an .uir file as an argument and reads its properties using NI libs. After that it also reads some settings from a database. Next the application creates .json which describes the panel's structure and contains all the properties and settings which were read.
 ---
 ## Features
-• Can use a database as a sourse of additional parameters or can work without it as well
-• Has the script for a batch conversion (optional)
+* Can use a database as a sourse of additional parameters or can work without it as well
+* Has the script for a batch conversion (optional)
 ---
 ## Architecture
 ```text
@@ -28,16 +28,16 @@ National Instruments CVI Runtime
 ```
 ---   
 ## Technologies
-• C#
-• .NET
-• C++
-• P/Invoke
-• DllImport
-• National Instruments LabWindows/CVI
-• Dependency Injection
-• JSON
-• Entity Framework
-• Serilog
+* C#
+* .NET
+* C++
+* P/Invoke
+* DllImport
+* National Instruments LabWindows/CVI
+* Dependency Injection
+* JSON
+* Entity Framework
+* Serilog
 ---
 ## Build Notes
 
