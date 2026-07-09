@@ -9,6 +9,7 @@ The project was developed to convert NI LabWindows .uir files into .json files f
 • Has the script for a batch conversion (optional)
 ---
 ## Architecture
+```text
 			C#
 			│
 			│ P/Invoke
@@ -24,6 +25,7 @@ National Instruments CVI Runtime
 			│
 			▼
 		JSON output
+		```
 ---   
 ## Technologies
 • C#
