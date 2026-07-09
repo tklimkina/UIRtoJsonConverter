@@ -40,7 +40,6 @@ National Instruments CVI Runtime
 * Serilog
 ---
 ## Build Notes
-
 The project depends on proprietary National Instruments libraries and the LabWindows/CVI Runtime.Because these components cannot be redistributed, the project cannot be built or executed out of the box without the required NI dependencies.The source code is provided to demonstrate the architecture and implementation of the converter.
 ---
 ## Motivation
